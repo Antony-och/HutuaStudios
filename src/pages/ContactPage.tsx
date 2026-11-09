@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PageType } from '../types';
-import { SERVICES_DATA } from '../data/agencyData';
+import { FAQ_ITEMS, SERVICES_DATA } from '../data/agencyData';
 import {
   Send,
   CheckCircle2,
@@ -12,6 +12,8 @@ import {
   Phone,
   Sparkles,
   ArrowRight,
+  ChevronDown,
+  HelpCircle,
 } from 'lucide-react';
 
 interface ContactPageProps {
@@ -59,6 +61,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [referenceId, setReferenceId] = useState('');
+  const [openFaqId, setOpenFaqId] = useState<string | null>(FAQ_ITEMS[0]?.id ?? null);
 
   const validate = () => {
     const errs: Record<string, string> = {};
@@ -390,6 +393,30 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             </div>
           </div>
         </div>
+        <section className="mt-20 border-t border-[#D9D0C2] pt-16 dark:border-[#404040]">
+          <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#BF603C]"><HelpCircle className="h-4 w-4" /><span>Before you reach out</span></div>
+              <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.03em] text-[#272727] dark:text-[#FAF8F5] sm:text-4xl">A few useful answers before we talk.</h2>
+              <p className="mt-3 text-sm leading-relaxed text-[#6B655F] dark:text-[#C5BFB8]">Start with the essentials. For anything specific to your business, send us the brief above and we’ll answer directly.</p>
+            </div>
+            <button onClick={() => onNavigate('faq')} className="inline-flex shrink-0 items-center gap-2 text-xs font-bold text-[#BF603C] hover:text-[#A6502E]">View all FAQs <ArrowRight className="h-4 w-4" /></button>
+          </div>
+          <div className="grid gap-3 lg:grid-cols-2">
+            {FAQ_ITEMS.slice(0, 4).map((item) => {
+              const isOpen = openFaqId === item.id;
+              return (
+                <div key={item.id} className={`overflow-hidden rounded-2xl border transition-all ${isOpen ? 'border-[#BF603C] bg-[#FAF8F5] shadow-sm dark:bg-[#323232]' : 'border-[#E5DFC8] bg-white/60 dark:border-[#444444] dark:bg-[#323232]/60'}`}>
+                  <button type="button" onClick={() => setOpenFaqId(isOpen ? null : item.id)} aria-expanded={isOpen} className="flex w-full items-center justify-between gap-4 p-5 text-left">
+                    <span className="text-sm font-bold text-[#272727] dark:text-[#FAF8F5]">{item.question}</span>
+                    <span className={`shrink-0 rounded-lg p-1.5 text-[#8C857D] transition-transform ${isOpen ? 'rotate-180 bg-[#BF603C]/10 text-[#BF603C]' : 'bg-[#F2EDE4] dark:bg-[#272727]'}`}><ChevronDown className="h-4 w-4" /></span>
+                  </button>
+                  {isOpen && <div className="border-t border-[#E5DFC8]/70 px-5 pb-5 pt-4 text-xs leading-relaxed text-[#5C5854] dark:border-[#444444] dark:text-[#C5BFB8]">{item.answer}</div>}
+                </div>
+              );
+            })}
+          </div>
+        </section>
       </div>
     </div>
   );
