@@ -78,18 +78,15 @@ export const WhyUsPage: React.FC<WhyUsPageProps> = ({ onNavigate }) => {
                 </button>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                ['48', 'specialist services'],
-                ['14d', 'average launch sprint'],
-                ['100%', 'client satisfaction'],
-                ['30d', 'post-launch warranty'],
-              ].map(([value, label]) => (
-                <div key={label} className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <span className="block text-3xl font-extrabold tracking-tight text-[#D97852]">{value}</span>
-                  <span className="mt-2 block text-[10px] font-bold uppercase tracking-wider text-[#A8A39D]">{label}</span>
-                </div>
-              ))}
+            <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 sm:p-7">
+              <div className="flex items-center justify-between border-b border-white/10 pb-5"><span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#D97852]">The Hutua operating agreement</span><span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#A8A39D]"><span className="h-2 w-2 rounded-full bg-emerald-400" /> Active</span></div>
+              <h2 className="mt-6 text-2xl font-bold tracking-tight text-white">A better partner is a better process.</h2>
+              <ul className="mt-6 space-y-4 text-sm text-[#C5BFB8]">
+                {['You always know what happens next.', 'The people doing the work stay close to the decision.', 'The final system belongs to your team.'].map((promise) => <li key={promise} className="flex items-start gap-3"><span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#BF603C]/20 text-[#D97852]"><Check className="h-3 w-3" /></span><span>{promise}</span></li>)}
+              </ul>
+              <div className="mt-7 grid grid-cols-2 gap-2 border-t border-white/10 pt-5">
+                {[['48', 'services'], ['14d', 'avg. launch'], ['100%', 'satisfaction'], ['30d', 'warranty']].map(([value, label]) => <div key={label}><span className="block text-xl font-extrabold tracking-tight text-[#D97852]">{value}</span><span className="mt-1 block text-[9px] font-bold uppercase tracking-wider text-[#A8A39D]">{label}</span></div>)}
+              </div>
             </div>
           </div>
         </div>
@@ -161,6 +158,7 @@ export const WhyUsPage: React.FC<WhyUsPageProps> = ({ onNavigate }) => {
               </button>
             ))}
           </div>
+          <div className="mt-5 h-1 overflow-hidden rounded-full bg-[#D9D0C2] dark:bg-[#444444]"><div className="h-full rounded-full bg-[#BF603C] transition-all duration-500" style={{ width: `${((activeStepIndex + 1) / PROCESS_STEPS.length) * 100}%` }} /></div>
 
           <div className="mt-4 grid gap-8 rounded-3xl border border-[#E5DFC8] bg-white p-6 dark:border-[#444444] dark:bg-[#323232] sm:p-8 lg:grid-cols-[1fr_0.65fr]">
             <div>
