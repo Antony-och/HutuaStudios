@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PageType } from '../types';
-import { VALUE_PROPS } from '../data/agencyData';
+import { PROCESS_STEPS, VALUE_PROPS } from '../data/agencyData';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -8,6 +8,7 @@ import {
   Check,
   Clock3,
   Cpu,
+  FileCheck,
   HeartHandshake,
   LifeBuoy,
   ShieldCheck,
@@ -37,6 +38,9 @@ const principles = [
 ];
 
 export const WhyUsPage: React.FC<WhyUsPageProps> = ({ onNavigate }) => {
+  const [activeStepIndex, setActiveStepIndex] = useState(0);
+  const activeStep = PROCESS_STEPS[activeStepIndex];
+
   const getIcon = (name: string) => {
     switch (name) {
       case 'Zap': return <Zap className="h-5 w-5" />;
@@ -69,7 +73,7 @@ export const WhyUsPage: React.FC<WhyUsPageProps> = ({ onNavigate }) => {
                 <button onClick={() => onNavigate('contact')} className="inline-flex items-center gap-2 rounded-xl bg-[#BF603C] px-5 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#A6502E]">
                   Talk to the team <ArrowRight className="h-4 w-4" />
                 </button>
-                <button onClick={() => onNavigate('process')} className="inline-flex items-center gap-2 rounded-xl border border-white/15 px-5 py-3.5 text-sm font-semibold text-white transition-colors hover:border-[#D97852] hover:text-[#D97852]">
+                <button onClick={() => onNavigate('why-us')} className="inline-flex items-center gap-2 rounded-xl border border-white/15 px-5 py-3.5 text-sm font-semibold text-white transition-colors hover:border-[#D97852] hover:text-[#D97852]">
                   See how we work <ArrowUpRight className="h-4 w-4" />
                 </button>
               </div>
@@ -138,6 +142,45 @@ export const WhyUsPage: React.FC<WhyUsPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
+      <section className="border-y border-[#E5DFC8] bg-[#F2EDE4] py-20 dark:border-[#404040] dark:bg-[#1E1E1E]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#BF603C]">How the work moves</span>
+              <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.03em] text-[#272727] dark:text-[#FAF8F5] sm:text-5xl">A transparent process is part of the product.</h2>
+              <p className="mt-4 text-sm leading-relaxed text-[#6B655F] dark:text-[#C5BFB8]">The Process is not a separate handoff. It is how we make the Why Us promise tangible: clear milestones, useful decisions, and no disappearing acts.</p>
+            </div>
+            <button onClick={() => onNavigate('contact')} className="inline-flex shrink-0 items-center gap-2 text-xs font-bold text-[#BF603C] hover:text-[#A6502E]">Start with Phase 01 <ArrowRight className="h-4 w-4" /></button>
+          </div>
+
+          <div className="grid gap-3 md:grid-cols-4">
+            {PROCESS_STEPS.map((step, index) => (
+              <button key={step.number} onClick={() => setActiveStepIndex(index)} className={`rounded-2xl border p-5 text-left transition-all ${activeStepIndex === index ? 'border-[#BF603C] bg-white shadow-md dark:bg-[#323232]' : 'border-[#E5DFC8] bg-[#FAF8F5] hover:border-[#BF603C]/50 dark:border-[#444444] dark:bg-[#323232]/50'}`}>
+                <div className="flex items-center justify-between gap-3"><span className={`text-xs font-bold tracking-[0.18em] ${activeStepIndex === index ? 'text-[#BF603C]' : 'text-[#8C857D]'}`}>{step.number}</span><span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#8C857D]"><Clock3 className="h-3 w-3" />{step.duration}</span></div>
+                <h3 className={`mt-8 text-sm font-bold ${activeStepIndex === index ? 'text-[#BF603C]' : 'text-[#272727] dark:text-[#FAF8F5]'}`}>{step.title}</h3>
+              </button>
+            ))}
+          </div>
+
+          <div className="mt-4 grid gap-8 rounded-3xl border border-[#E5DFC8] bg-white p-6 dark:border-[#444444] dark:bg-[#323232] sm:p-8 lg:grid-cols-[1fr_0.65fr]">
+            <div>
+              <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#BF603C]"><span>Phase {activeStep.number} breakdown</span><span className="text-[#BF603C]/40">/</span><span>{activeStep.duration}</span></div>
+              <h3 className="mt-3 text-2xl font-extrabold tracking-tight text-[#272727] dark:text-[#FAF8F5] sm:text-3xl">{activeStep.title}</h3>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#5C5854] dark:text-[#C5BFB8]">{activeStep.description}</p>
+              <ul className="mt-6 grid gap-3 sm:grid-cols-2">{activeStep.activities.map((activity) => <li key={activity} className="flex items-start gap-2 text-xs leading-relaxed text-[#5C5854] dark:text-[#C5BFB8]"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#BF603C]" />{activity}</li>)}</ul>
+            </div>
+            <div className="flex flex-col justify-between rounded-2xl bg-[#272727] p-6 text-[#FAF8F5] dark:bg-[#1E1E1E]">
+              <div><FileCheck className="h-6 w-6 text-[#D97852]" /><span className="mt-7 block text-[10px] font-bold uppercase tracking-[0.18em] text-[#D97852]">Milestone deliverable</span><h4 className="mt-2 text-lg font-bold text-white">{activeStep.deliverable}</h4><p className="mt-2 text-xs leading-relaxed text-[#A8A39D]">Delivered with access, documentation, and a walkthrough so your team can keep moving.</p></div>
+              <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-4 text-xs"><span className="text-[#A8A39D]">Step {activeStepIndex + 1} of {PROCESS_STEPS.length}</span><button onClick={() => setActiveStepIndex((activeStepIndex + 1) % PROCESS_STEPS.length)} className="inline-flex items-center gap-1 font-bold text-[#D97852]">Next phase <ArrowRight className="h-3.5 w-3.5" /></button></div>
+            </div>
+          </div>
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            {['Commercial goals', 'Brand assets or guidelines', 'Content or key messaging'].map((item, index) => <div key={item} className="rounded-2xl border border-[#E5DFC8] bg-[#FAF8F5] p-4 dark:border-[#444444] dark:bg-[#323232]"><span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#BF603C]/10 text-xs font-bold text-[#BF603C]">{index + 1}</span><span className="mt-3 block text-xs font-bold text-[#272727] dark:text-[#FAF8F5]">{item}</span><span className="mt-1 block text-[10px] leading-relaxed text-[#8C857D]">The only essentials needed to begin a focused sprint.</span></div>)}
+          </div>
+        </div>
+      </section>
+
       <section className="border-t border-[#E5DFC8] bg-[#F2EDE4] py-20 dark:border-[#404040] dark:bg-[#1E1E1E]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 max-w-2xl">
@@ -164,7 +207,7 @@ export const WhyUsPage: React.FC<WhyUsPageProps> = ({ onNavigate }) => {
           <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#D97852]">A better next step</span>
           <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.03em] text-white sm:text-5xl">Bring us the problem worth solving.</h2>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[#C5BFB8]">Tell us where the friction is. We’ll help you identify the most useful place to start.</p>
-          <button onClick={() => onNavigate('contact')} className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#BF603C] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#A6502E]">Book a free consultation <ArrowRight className="h-4 w-4" /></button>
+          <button onClick={() => onNavigate('contact')} className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#BF603C] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#A6502E]">Talk to Us <ArrowRight className="h-4 w-4" /></button>
         </div>
       </section>
     </div>

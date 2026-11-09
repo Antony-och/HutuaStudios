@@ -100,7 +100,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
               <div className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#BF603C]">
-                <span>Book a free consultation</span>
+                <span>Talk to Us</span>
                 <span aria-hidden="true" className="text-[#8C857D]">·</span>
                 <span>Scope review</span>
               </div>

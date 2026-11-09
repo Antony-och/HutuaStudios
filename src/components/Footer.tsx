@@ -105,8 +105,7 @@ export const Footer: React.FC<FooterProps> = ({
               {[
                 { label: 'Home', page: 'home' as PageType },
                 { label: 'Services (48)', page: 'services' as PageType },
-                { label: 'Why Us', page: 'why-us' as PageType },
-                { label: 'Our Process', page: 'process' as PageType },
+                { label: 'Why Us + Process', page: 'why-us' as PageType },
                 { label: 'Case Studies', page: 'work' as PageType },
                 { label: 'FAQ', page: 'faq' as PageType },
                 { label: 'Contact', page: 'contact' as PageType },

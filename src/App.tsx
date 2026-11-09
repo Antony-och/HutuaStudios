@@ -13,7 +13,6 @@ import { ServiceModal } from './components/ServiceModal';
 import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
 import { WhyUsPage } from './pages/WhyUsPage';
-import { ProcessPage } from './pages/ProcessPage';
 import { WorkPage } from './pages/WorkPage';
 import { FaqPage } from './pages/FaqPage';
 import { ContactPage } from './pages/ContactPage';
@@ -30,8 +29,7 @@ export default function App() {
   const getInitialPage = (): PageType => {
     const path = window.location.pathname.replace(/^\//, '').toLowerCase();
     if (path === 'services') return 'services';
-    if (path === 'why-us' || path === 'about') return 'why-us';
-    if (path === 'process') return 'process';
+    if (path === 'why-us' || path === 'about' || path === 'process') return 'why-us';
     if (path === 'work' || path === 'portfolio') return 'work';
     if (path === 'faq') return 'faq';
     if (path === 'contact') return 'contact';
@@ -48,7 +46,8 @@ export default function App() {
 
   // Synchronize browser history and document title
   const navigateTo = (page: PageType) => {
-    setCurrentPage(page);
+    const resolvedPage: PageType = page === 'process' ? 'why-us' : page;
+    setCurrentPage(resolvedPage);
     const pageTitles: Record<PageType, string> = {
       home: 'Hutua Studios | Modern Digital Agency & Software Solutions',
       services: 'Services & Disciplines | Hutua Studios',
@@ -58,9 +57,9 @@ export default function App() {
       faq: 'Frequently Asked Questions | Hutua Studios',
       contact: 'Talk to Us | Hutua Studios',
     };
-    document.title = pageTitles[page] || 'Hutua Studios';
+    document.title = pageTitles[resolvedPage] || 'Hutua Studios';
 
-    const newPath = page === 'home' ? '/' : `/${page}`;
+    const newPath = resolvedPage === 'home' ? '/' : `/${resolvedPage}`;
     if (window.location.pathname !== newPath) {
       window.history.pushState({ page }, '', newPath);
     }
@@ -139,10 +138,6 @@ export default function App() {
 
         {currentPage === 'why-us' && (
           <WhyUsPage onNavigate={navigateTo} />
-        )}
-
-        {currentPage === 'process' && (
-          <ProcessPage onNavigate={navigateTo} />
         )}
 
         {currentPage === 'work' && (

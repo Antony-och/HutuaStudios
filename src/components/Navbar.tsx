@@ -29,8 +29,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navItems: { label: string; page: PageType }[] = [
     { label: 'Home', page: 'home' },
     { label: 'Services', page: 'services' },
-    { label: 'Why Us', page: 'why-us' },
-    { label: 'Process', page: 'process' },
+    { label: 'Why Us + Process', page: 'why-us' },
     { label: 'Work', page: 'work' },
     { label: 'FAQ', page: 'faq' },
     { label: 'Contact', page: 'contact' },

@@ -228,7 +228,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
             <div className="max-w-sm">
               <p className="text-sm leading-relaxed text-[#C5BFB8]">No black boxes or disappearing handoffs. Every project has a visible next step, a named owner, and a clear definition of done.</p>
-              <button onClick={() => onNavigate('process')} className="mt-5 inline-flex items-center gap-2 text-xs font-bold text-[#D97852] transition-colors hover:text-white">
+              <button onClick={() => onNavigate('why-us')} className="mt-5 inline-flex items-center gap-2 text-xs font-bold text-[#D97852] transition-colors hover:text-white">
                 Explore the full delivery process <ArrowRight className="h-4 w-4" />
               </button>
             </div>
