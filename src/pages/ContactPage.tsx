@@ -33,7 +33,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
     phone: '',
     company: '',
     service: prefilledService || 'Basic Website Design',
-    budget: prefilledBudget || '$1,500 – $3,000',
+    budget: prefilledBudget || 'KSh 75,000 – 150,000',
     timeline: 'Within 2–4 weeks',
     message: prefilledNotes || '',
   });
@@ -92,22 +92,27 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   };
 
   return (
-    <div className="pt-28 pb-20 bg-[#FAF8F5] dark:bg-[#272727] text-[#272727] dark:text-[#FAF8F5] min-h-screen">
+    <div className="min-h-screen overflow-hidden bg-[#F2EDE4] pb-20 pt-28 text-[#272727] dark:bg-[#1E1E1E] dark:text-[#FAF8F5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="mb-12 max-w-3xl">
+          <div className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#BF603C]"><span>Talk to us</span><span className="text-[#BF603C]/40">/</span><span>Start with the real brief</span></div>
+          <h1 className="max-w-3xl text-5xl font-extrabold leading-[0.98] tracking-[-0.05em] text-[#272727] dark:text-[#FAF8F5] sm:text-7xl">Let’s talk about what’s next.</h1>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#5C5854] dark:text-[#C5BFB8] sm:text-lg">Tell us where the friction is, what you are trying to build, or what needs to move faster. We’ll help you find the most useful next step.</p>
+        </div>
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
           {/* Left Column: Direct channels and reassurance */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#BF603C] mb-3">
-                <span>Start Your Project</span>
+                <span>Direct channels</span>
                 <span aria-hidden="true" className="text-[#BF603C]/40">·</span>
-                <span>Direct Lead Architecture</span>
+                <span>Real people, useful replies</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-[#272727] dark:text-[#FAF8F5] mb-4">
-                Let's Build Something High-Performing Together.
-              </h1>
+              <h2 className="mb-4 text-3xl font-extrabold tracking-[-0.03em] text-[#272727] dark:text-[#FAF8F5] sm:text-4xl">
+                Bring the question. We’ll bring a direction.
+              </h2>
               <p className="text-sm sm:text-base text-[#5C5854] dark:text-[#C5BFB8] leading-relaxed mb-8">
-                Share your requirements, existing site link, or upcoming vision. You'll receive a detailed scope analysis, fixed-price quote, and technical sprint timeline within 2 business hours.
+                Choose the channel that works best. For a detailed scope, use the form and we’ll reply with a practical recommendation within 2 business hours.
               </p>
 
               {/* Instant WhatsApp & Email CTA buttons */}
@@ -168,7 +173,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
           {/* Right Column: Lead Capture Form */}
           <div className="lg:col-span-7">
-            <div className="rounded-2xl bg-white dark:bg-[#323232] border border-[#E5DFC8] dark:border-[#444444] p-6 sm:p-10 shadow-sm">
+            <div className="rounded-[1.75rem] border border-[#E5DFC8] bg-[#FAF8F5] p-5 shadow-xl dark:border-[#444444] dark:bg-[#323232] sm:p-8">
               {isSubmitted ? (
                 <div className="text-center py-10 animate-in fade-in duration-300">
                   <div className="w-16 h-16 rounded-full bg-[#BF603C]/10 text-[#BF603C] flex items-center justify-center mx-auto mb-4">
@@ -208,7 +213,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                         phone: '',
                         company: '',
                         service: 'Basic Website Design',
-                        budget: '$1,500 – $3,000',
+                        budget: 'KSh 75,000 – 150,000',
                         timeline: 'Within 2–4 weeks',
                         message: '',
                       });
@@ -220,13 +225,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="border-b border-[#E5DFC8] dark:border-[#404040] pb-3 mb-4">
-                    <h2 className="text-xl font-bold font-display text-[#272727] dark:text-[#FAF8F5]">
-                      Book a Free Consultation &amp; Scope Review
-                    </h2>
-                    <p className="text-xs text-[#8C857D] mt-0.5">
-                      Fixed-price proposal · Zero obligation · Senior engineer reply
-                    </p>
+                  <div className="mb-6 rounded-2xl bg-[#272727] p-5 text-[#FAF8F5] dark:bg-[#1E1E1E]">
+                    <div className="flex items-center justify-between gap-4"><div><span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#D97852]">01 / Your message</span><h2 className="mt-2 text-xl font-bold text-white">Talk to Us &amp; Scope Review</h2></div><ShieldCheck className="h-5 w-5 shrink-0 text-[#D97852]" /></div><p className="mt-3 text-xs leading-relaxed text-[#C5BFB8]">No pressure, no generic pitch. Just enough context for a useful first response.</p>
                   </div>
 
                   {/* Name and Email */}
@@ -321,10 +321,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                         onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                         className="w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-xl bg-[#FAF8F5] dark:bg-[#272727] border border-[#E5DFC8] dark:border-[#444444] focus:border-[#BF603C] text-[#272727] dark:text-[#FAF8F5] focus:outline-none transition-colors cursor-pointer"
                       >
-                        <option value="$500 – $1,500">$500 – $1,500 (Basic Site / One-Page)</option>
-                        <option value="$1,500 – $3,000">$1,500 – $3,000 (E-Commerce / Custom Portal)</option>
-                        <option value="$3,000 – $5,000+">$3,000 – $5,000+ (Marketplace / Custom App)</option>
-                        <option value="Monthly Retainer">Monthly Retainer ($650+/mo)</option>
+                        <option value="KSh 25,000 – 75,000">KSh 25,000 – 75,000 (Starter / One-Page)</option>
+                        <option value="KSh 75,000 – 150,000">KSh 75,000 – 150,000 (E-Commerce / Custom Portal)</option>
+                        <option value="KSh 150,000 – 300,000+">KSh 150,000 – 300,000+ (Marketplace / Custom App)</option>
+                        <option value="Flexible / Monthly Retainer">Flexible / Monthly Retainer</option>
                       </select>
                     </div>
                   </div>
@@ -375,7 +375,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                         <span>Validating and Submitting...</span>
                       ) : (
                         <>
-                          <span>Book a Free Consultation</span>
+                          <span>Talk to Us</span>
                           <ArrowRight className="w-4 h-4" />
                         </>
                       )}

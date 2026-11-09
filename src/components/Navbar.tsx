@@ -55,14 +55,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Zone 1: Brand Wordmark */}
           <button
             onClick={() => handleNavClick('home')}
-            className="flex items-center gap-2.5 text-left text-xl font-bold tracking-tight text-[#272727] dark:text-[#FAF8F5] font-display whitespace-nowrap shrink-0 group cursor-pointer"
+            className="flex items-center rounded-lg bg-[#272727] dark:bg-[#1E1E1E] px-2 py-1.5 text-left whitespace-nowrap shrink-0 group cursor-pointer"
+            aria-label="Hutua Studios home"
           >
-            <span className="w-8 h-8 rounded-lg bg-[#BF603C] flex items-center justify-center text-white text-sm font-black shadow-sm group-hover:bg-[#A6502E] transition-colors">
-              H
-            </span>
-            <span className="tracking-tight font-extrabold text-lg text-[#272727] dark:text-[#FAF8F5]">
-              Hutua <span className="text-[#BF603C]">Studios</span>
-            </span>
+            <img
+              src="/assets/brand/hatua-logo-horizontal-reversed-2000.png"
+              alt="Hutua Studios"
+              className="h-8 w-[122px] object-contain object-left transition-transform duration-200 group-hover:scale-[1.02]"
+            />
           </button>
 
           {/* Zone 2: Navigation Links */}
@@ -103,7 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => handleNavClick('contact')}
               className="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-semibold text-white bg-[#BF603C] hover:bg-[#A6502E] rounded-lg shadow-sm transition-all whitespace-nowrap shrink-0 cursor-pointer"
             >
-              <span>Book a Free Consultation</span>
+              <span>Talk to Us</span>
               <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
             </button>
 
@@ -144,7 +144,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => handleNavClick('contact')}
                 className="w-full flex items-center justify-center gap-1.5 px-4 py-3 text-sm font-semibold text-white bg-[#BF603C] hover:bg-[#A6502E] rounded-lg shadow-sm transition-all cursor-pointer"
               >
-                <span>Book a Free Consultation</span>
+                <span>Talk to Us</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

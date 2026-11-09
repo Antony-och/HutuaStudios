@@ -58,7 +58,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   };
 
   const categories: { label: string; value: ServiceCategory }[] = [
-    { label: 'All Services (8)', value: 'all' },
+    { label: 'All Services (48)', value: 'all' },
     { label: 'Web & E-Commerce', value: 'web' },
     { label: 'Software & AI', value: 'software-ai' },
     { label: 'Marketing & IT Advisory', value: 'marketing-it' },
@@ -73,7 +73,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-400 mb-3">
               <span>Core Capabilities</span>
               <span aria-hidden="true" className="text-slate-600">·</span>
-              <span>8 Core Disciplines</span>
+              <span>48 Specialized Services</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-display tracking-tight text-white">
               End-to-End Digital Solutions Tailored for Scalability.
@@ -101,7 +101,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           </div>
         </div>
 
-        {/* 8 Service Cards Grid */}
+        {/* 28 Service Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredServices.map((service, index) => (
             <div
@@ -184,7 +184,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
               onClick={onBookConsultation}
               className="px-6 py-3 text-xs font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 rounded-xl shadow-md transition-all flex items-center gap-2 cursor-pointer"
             >
-              <span>Book a Free Consultation</span>
+              <span>Talk to Us</span>
               <ArrowUpRight className="w-4 h-4" />
             </button>
           </div>
