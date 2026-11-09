@@ -1,6 +1,6 @@
 export type PageType = 'home' | 'services' | 'why-us' | 'process' | 'work' | 'faq' | 'contact';
 
-export type ServiceCategory = 'all' | 'web' | 'software-ai' | 'marketing-it';
+export type ServiceCategory = 'all' | 'branding' | 'web' | 'marketing-it' | 'advertising-pr' | 'activations-events' | 'software-ai' | 'strategy-consulting';
 
 export interface ServiceItem {
   id: string;

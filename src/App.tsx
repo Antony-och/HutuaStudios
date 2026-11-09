@@ -13,7 +13,6 @@ import { ServiceModal } from './components/ServiceModal';
 import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
 import { WhyUsPage } from './pages/WhyUsPage';
-import { ProcessPage } from './pages/ProcessPage';
 import { WorkPage } from './pages/WorkPage';
 import { FaqPage } from './pages/FaqPage';
 import { ContactPage } from './pages/ContactPage';
@@ -30,8 +29,7 @@ export default function App() {
   const getInitialPage = (): PageType => {
     const path = window.location.pathname.replace(/^\//, '').toLowerCase();
     if (path === 'services') return 'services';
-    if (path === 'why-us' || path === 'about') return 'why-us';
-    if (path === 'process') return 'process';
+    if (path === 'why-us' || path === 'about' || path === 'process') return 'why-us';
     if (path === 'work' || path === 'portfolio') return 'work';
     if (path === 'faq') return 'faq';
     if (path === 'contact') return 'contact';
@@ -43,12 +41,13 @@ export default function App() {
 
   // Prefill state for the contact form
   const [prefilledService, setPrefilledService] = useState<string>('Basic Website Design');
-  const [prefilledBudget, setPrefilledBudget] = useState<string>('$1,500 – $3,000');
+  const [prefilledBudget, setPrefilledBudget] = useState<string>('KSh 75,000 – 150,000');
   const [prefilledNotes, setPrefilledNotes] = useState<string>('');
 
   // Synchronize browser history and document title
   const navigateTo = (page: PageType) => {
-    setCurrentPage(page);
+    const resolvedPage: PageType = page === 'process' ? 'why-us' : page;
+    setCurrentPage(resolvedPage);
     const pageTitles: Record<PageType, string> = {
       home: 'Hutua Studios | Modern Digital Agency & Software Solutions',
       services: 'Services & Disciplines | Hutua Studios',
@@ -56,11 +55,11 @@ export default function App() {
       process: '4-Step Sprint Methodology | Hutua Studios',
       work: 'Portfolio & Case Studies | Hutua Studios',
       faq: 'Frequently Asked Questions | Hutua Studios',
-      contact: 'Book a Free Consultation | Hutua Studios',
+      contact: 'Talk to Us | Hutua Studios',
     };
-    document.title = pageTitles[page] || 'Hutua Studios';
+    document.title = pageTitles[resolvedPage] || 'Hutua Studios';
 
-    const newPath = page === 'home' ? '/' : `/${page}`;
+    const newPath = resolvedPage === 'home' ? '/' : `/${resolvedPage}`;
     if (window.location.pathname !== newPath) {
       window.history.pushState({ page }, '', newPath);
     }
@@ -110,14 +109,6 @@ export default function App() {
     }
   };
 
-  const handleApplyEstimate = (data: { service: string; budget: string; notes: string }) => {
-    setPrefilledService(data.service);
-    setPrefilledBudget(data.budget);
-    setPrefilledNotes(data.notes);
-    navigateTo('contact');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <div className={`min-h-screen ${darkMode ? 'dark bg-[#272727] text-[#FAF8F5]' : 'bg-[#FAF8F5] text-[#272727]'} transition-colors duration-200 selection:bg-[#BF603C]/20 selection:text-[#BF603C]`}>
       {/* Top Bar Navigation */}
@@ -134,7 +125,6 @@ export default function App() {
           <HomePage
             onNavigate={navigateTo}
             onSelectServiceModal={(srv) => setActiveModalService(srv)}
-            onApplyEstimate={handleApplyEstimate}
           />
         )}
 
@@ -143,16 +133,11 @@ export default function App() {
             onNavigate={navigateTo}
             onSelectServiceModal={(srv) => setActiveModalService(srv)}
             onBookServiceDirect={handleBookServiceDirect}
-            onApplyEstimate={handleApplyEstimate}
           />
         )}
 
         {currentPage === 'why-us' && (
           <WhyUsPage onNavigate={navigateTo} />
-        )}
-
-        {currentPage === 'process' && (
-          <ProcessPage onNavigate={navigateTo} />
         )}
 
         {currentPage === 'work' && (
@@ -176,7 +161,6 @@ export default function App() {
       {/* Footer */}
       <Footer
         onNavigate={navigateTo}
-        onSelectServiceModal={handleSelectServiceByTitle}
       />
 
       {/* Service Detail Modal */}

@@ -1,173 +1,213 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PageType } from '../types';
-import { VALUE_PROPS } from '../data/agencyData';
-import { Zap, Cpu, ShieldCheck, LifeBuoy, Check, X, ArrowRight, Award, Clock, HeartHandshake } from 'lucide-react';
+import { PROCESS_STEPS, VALUE_PROPS } from '../data/agencyData';
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Award,
+  Check,
+  Clock3,
+  Cpu,
+  FileCheck,
+  HeartHandshake,
+  LifeBuoy,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  X,
+  Zap,
+} from 'lucide-react';
 
 interface WhyUsPageProps {
   onNavigate: (page: PageType) => void;
 }
 
+const comparisonRows = [
+  ['Delivery rhythm', 'Visible milestones and focused 14-day sprints', 'Open-ended timelines and handoff delays'],
+  ['Commercial clarity', 'Fixed-scope pricing with defined deliverables', 'Unclear estimates that expand as work moves'],
+  ['People in the room', 'Direct access to the makers doing the work', 'Layers of account management between you and delivery'],
+  ['Technology choices', 'Modern, maintainable systems selected for the outcome', 'Generic templates and unnecessary complexity'],
+  ['After launch', '30-day warranty, handover, and optional ongoing care', 'A project ends when the invoice is paid'],
+  ['Ownership', 'Full transfer of code, assets, and design files', 'Platform lock-in or recurring access fees'],
+];
+
+const principles = [
+  { number: '01', icon: <Target className="h-5 w-5" />, title: 'Start with the business problem', text: 'We begin with the commercial outcome, audience, and constraint—not a favorite tool or template.' },
+  { number: '02', icon: <Cpu className="h-5 w-5" />, title: 'Make the complex usable', text: 'Strategy, design, content, and technology are shaped into an experience your team can actually run.' },
+  { number: '03', icon: <HeartHandshake className="h-5 w-5" />, title: 'Stay useful after launch', text: 'We document, hand over, train, and remain available when the real-world work starts.' },
+];
+
 export const WhyUsPage: React.FC<WhyUsPageProps> = ({ onNavigate }) => {
+  const [activeStepIndex, setActiveStepIndex] = useState(0);
+  const activeStep = PROCESS_STEPS[activeStepIndex];
+
   const getIcon = (name: string) => {
     switch (name) {
-      case 'Zap': return <Zap className="w-6 h-6 text-[#BF603C]" />;
-      case 'Cpu': return <Cpu className="w-6 h-6 text-[#BF603C]" />;
-      case 'ShieldCheck': return <ShieldCheck className="w-6 h-6 text-[#BF603C]" />;
-      case 'LifeBuoy': return <LifeBuoy className="w-6 h-6 text-[#BF603C]" />;
-      default: return <Zap className="w-6 h-6 text-[#BF603C]" />;
+      case 'Zap': return <Zap className="h-5 w-5" />;
+      case 'Cpu': return <Cpu className="h-5 w-5" />;
+      case 'ShieldCheck': return <ShieldCheck className="h-5 w-5" />;
+      case 'LifeBuoy': return <LifeBuoy className="h-5 w-5" />;
+      default: return <Sparkles className="h-5 w-5" />;
     }
   };
 
-  const comparisonRows = [
-    {
-      factor: 'Project Delivery Speed',
-      hutua: '14-Day Average Launch Sprints',
-      traditional: '3 to 6 months of scope creep & delays',
-    },
-    {
-      factor: 'Pricing Structure',
-      hutua: 'Fixed-Scope Milestones (Zero surprise overages)',
-      traditional: 'Vague hourly rates with escalating invoices',
-    },
-    {
-      factor: 'Code Quality & Tech Stack',
-      hutua: 'Bespoke TypeScript & modern cloud hosting (99+ Speed)',
-      traditional: 'Bloated multi-purpose WordPress templates & plugins',
-    },
-    {
-      factor: 'Direct Communication',
-      hutua: 'Direct line to your lead engineer & designer',
-      traditional: 'Slow telephone game through non-technical account reps',
-    },
-    {
-      factor: 'Post-Launch Care',
-      hutua: '30-Day Free Bug Warranty & Dedicated Retainers',
-      traditional: 'Charges extra for simple bug fixes on day one',
-    },
-    {
-      factor: 'Intellectual Property',
-      hutua: '100% full transfer of all code, assets & design files',
-      traditional: 'Proprietary lock-in or recurring license fees',
-    },
-  ];
-
   return (
-    <div className="pt-28 pb-20 bg-[#FAF8F5] dark:bg-[#272727] text-[#272727] dark:text-[#FAF8F5] min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="max-w-3xl mb-16">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#BF603C] mb-3">
-            <span>Why Hutua Studios</span>
-            <span aria-hidden="true" className="text-[#BF603C]/40">·</span>
-            <span>Agency Philosophy</span>
-          </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-[#272727] dark:text-[#FAF8F5] mb-4">
-            Built to Eliminate the Waste, Delays, and Frustrations of Traditional Agencies.
-          </h1>
-          <p className="text-base sm:text-lg text-[#5C5854] dark:text-[#C5BFB8] leading-relaxed">
-            We operate with startup velocity and senior engineering discipline. When you partner with Hutua Studios, you work directly with makers who care about your balance sheet as much as the craft.
-          </p>
-        </div>
-
-        {/* 4 Value Pillars Detailed */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-          {VALUE_PROPS.map((prop, idx) => (
-            <div
-              key={prop.id}
-              className="p-8 rounded-2xl bg-white dark:bg-[#323232] border border-[#E5DFC8] dark:border-[#444444] shadow-sm flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-[#FAF8F5] dark:bg-[#272727] border border-[#E5DFC8] dark:border-[#444444] flex items-center justify-center">
-                    {getIcon(prop.iconName)}
-                  </div>
-                  <span className="text-2xl font-black font-display text-[#BF603C] tabular-nums">
-                    {prop.metric}
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold font-display text-[#272727] dark:text-[#FAF8F5] mb-2">
-                  {prop.title}
-                </h3>
-                <p className="text-sm text-[#5C5854] dark:text-[#C5BFB8] leading-relaxed mb-6">
-                  {prop.description}
-                </p>
+    <div className="min-h-screen overflow-hidden bg-[#FAF8F5] text-[#272727] dark:bg-[#272727] dark:text-[#FAF8F5]">
+      <section className="relative overflow-hidden bg-[#272727] pb-20 pt-32 text-[#FAF8F5] dark:bg-[#1E1E1E] sm:pb-28 sm:pt-40">
+        <div className="pointer-events-none absolute -right-40 -top-40 h-[32rem] w-[32rem] rounded-full bg-[#BF603C]/20 blur-3xl" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+            <div>
+              <div className="mb-6 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#D97852]">
+                <span>Why Hutua Studios</span>
+                <span className="text-white/30">/</span>
+                <span>A better operating model</span>
               </div>
-
-              <div className="pt-4 border-t border-[#E5DFC8]/60 dark:border-[#404040]">
-                <span className="text-xs text-[#8C857D] font-medium">
-                  Verified Benchmark: {prop.metricLabel}
-                </span>
+              <h1 className="max-w-4xl text-5xl font-extrabold leading-[0.96] tracking-[-0.05em] text-white sm:text-7xl">
+                Good work should feel <span className="text-[#D97852]">clearer</span> from day one.
+              </h1>
+              <p className="mt-7 max-w-2xl text-base leading-relaxed text-[#C5BFB8] sm:text-lg">
+                Hutua is built for teams that want senior thinking, practical execution, and a partner who treats time, budget, and ownership as seriously as the final craft.
+              </p>
+              <div className="mt-9 flex flex-wrap items-center gap-3">
+                <button onClick={() => onNavigate('contact')} className="inline-flex items-center gap-2 rounded-xl bg-[#BF603C] px-5 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#A6502E]">
+                  Talk to the team <ArrowRight className="h-4 w-4" />
+                </button>
+                <button onClick={() => onNavigate('why-us')} className="inline-flex items-center gap-2 rounded-xl border border-white/15 px-5 py-3.5 text-sm font-semibold text-white transition-colors hover:border-[#D97852] hover:text-[#D97852]">
+                  See how we work <ArrowUpRight className="h-4 w-4" />
+                </button>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Comparative Advantage Table */}
-        <div className="rounded-2xl border border-[#E5DFC8] dark:border-[#444444] bg-white dark:bg-[#323232] p-6 sm:p-10 shadow-sm mb-20">
-          <div className="max-w-2xl mb-8">
-            <h2 className="text-2xl font-bold font-display text-[#272727] dark:text-[#FAF8F5] mb-2">
-              Side-by-Side Evaluation: Hutua Studios vs. Traditional Agencies
-            </h2>
-            <p className="text-xs sm:text-sm text-[#6B655F] dark:text-[#A8A39D]">
-              Clear expectations, honest commitments, and predictable deliverables from day one.
-            </p>
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs sm:text-sm">
-              <thead>
-                <tr className="border-b border-[#E5DFC8] dark:border-[#404040] text-[#8C857D]">
-                  <th className="py-3 px-4 font-semibold uppercase tracking-wider text-[11px]">Deliverable Standard</th>
-                  <th className="py-3 px-4 font-bold text-[#BF603C] uppercase tracking-wider text-[11px] bg-[#FAF8F5] dark:bg-[#272727] rounded-t-lg">
-                    Hutua Studios
-                  </th>
-                  <th className="py-3 px-4 font-semibold uppercase tracking-wider text-[11px] text-[#8C857D]">
-                    Traditional Agencies / Freelancers
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#E5DFC8]/60 dark:divide-[#404040]">
-                {comparisonRows.map((row, idx) => (
-                  <tr key={idx} className="hover:bg-[#FAF8F5]/60 dark:hover:bg-[#2A2A2A] transition-colors">
-                    <td className="py-4 px-4 font-medium text-[#272727] dark:text-[#FAF8F5]">
-                      {row.factor}
-                    </td>
-                    <td className="py-4 px-4 font-semibold text-[#272727] dark:text-[#FAF8F5] bg-[#FAF8F5]/80 dark:bg-[#272727]/80">
-                      <div className="flex items-center gap-2">
-                        <Check className="w-4 h-4 text-[#BF603C] shrink-0" />
-                        <span>{row.hutua}</span>
-                      </div>
-                    </td>
-                    <td className="py-4 px-4 text-[#6B655F] dark:text-[#A8A39D]">
-                      <div className="flex items-center gap-2">
-                        <X className="w-4 h-4 text-rose-500 shrink-0" />
-                        <span>{row.traditional}</span>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 sm:p-7">
+              <div className="flex items-center justify-between border-b border-white/10 pb-5"><span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#D97852]">The Hutua operating agreement</span><span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#A8A39D]"><span className="h-2 w-2 rounded-full bg-emerald-400" /> Active</span></div>
+              <h2 className="mt-6 text-2xl font-bold tracking-tight text-white">A better partner is a better process.</h2>
+              <ul className="mt-6 space-y-4 text-sm text-[#C5BFB8]">
+                {['You always know what happens next.', 'The people doing the work stay close to the decision.', 'The final system belongs to your team.'].map((promise) => <li key={promise} className="flex items-start gap-3"><span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#BF603C]/20 text-[#D97852]"><Check className="h-3 w-3" /></span><span>{promise}</span></li>)}
+              </ul>
+              <div className="mt-7 grid grid-cols-2 gap-2 border-t border-white/10 pt-5">
+                {[['48', 'services'], ['14d', 'avg. launch'], ['100%', 'satisfaction'], ['30d', 'warranty']].map(([value, label]) => <div key={label}><span className="block text-xl font-extrabold tracking-tight text-[#D97852]">{value}</span><span className="mt-1 block text-[9px] font-bold uppercase tracking-wider text-[#A8A39D]">{label}</span></div>)}
+              </div>
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* CTA Banner */}
-        <div className="p-8 sm:p-12 rounded-2xl bg-[#272727] text-[#FAF8F5] text-center">
-          <h3 className="text-2xl sm:text-3xl font-bold font-display text-white mb-3">
-            Experience the Difference of Working with Real Builders.
-          </h3>
-          <p className="text-xs sm:text-sm text-[#C5BFB8] max-w-xl mx-auto mb-8">
-            Tell us about your upcoming website, app, or marketing requirements for a free, transparent feasibility review.
-          </p>
-          <button
-            onClick={() => onNavigate('contact')}
-            className="px-6 py-3.5 text-xs sm:text-sm font-semibold text-white bg-[#BF603C] hover:bg-[#A6502E] rounded-xl shadow-md transition-all cursor-pointer inline-flex items-center gap-2"
-          >
-            <span>Book Your Discovery Call</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
+      <section className="border-b border-[#E5DFC8] bg-[#F2EDE4] py-20 dark:border-[#404040] dark:bg-[#1E1E1E]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 max-w-2xl">
+            <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#BF603C]">The partnership experience</span>
+            <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.03em] text-[#272727] dark:text-[#FAF8F5] sm:text-5xl">The difference shows up in the way the work runs.</h2>
+            <p className="mt-4 text-sm leading-relaxed text-[#6B655F] dark:text-[#C5BFB8]">These are not abstract promises. They are the operating standards we use to make every engagement more predictable and more useful.</p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            {VALUE_PROPS.map((prop, index) => (
+              <article key={prop.id} className="group rounded-3xl border border-[#E5DFC8] bg-[#FAF8F5] p-6 transition-all hover:-translate-y-1 hover:border-[#BF603C]/50 hover:shadow-lg dark:border-[#444444] dark:bg-[#323232] sm:p-7">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#BF603C]/20 bg-[#BF603C]/10 text-[#BF603C]">{getIcon(prop.iconName)}</div>
+                  <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#8C857D]">0{index + 1}</span>
+                </div>
+                <div className="mt-8 flex items-end justify-between gap-4">
+                  <h3 className="max-w-xs text-xl font-bold tracking-tight text-[#272727] group-hover:text-[#BF603C] dark:text-[#FAF8F5]">{prop.title}</h3>
+                  <span className="text-2xl font-extrabold tracking-tight text-[#BF603C]">{prop.metric}</span>
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-[#5C5854] dark:text-[#C5BFB8]">{prop.description}</p>
+                <div className="mt-6 flex items-center gap-2 border-t border-[#E5DFC8] pt-4 text-[10px] font-bold uppercase tracking-wider text-[#8C857D] dark:border-[#444444]"><Award className="h-3.5 w-3.5 text-[#BF603C]" /> {prop.metricLabel}</div>
+              </article>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
+
+      <section className="bg-[#FAF8F5] py-20 dark:bg-[#272727]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#BF603C]">Our operating principles</span>
+              <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.03em] text-[#272727] dark:text-[#FAF8F5] sm:text-5xl">The rules we bring into every room.</h2>
+            </div>
+            <span className="max-w-xs text-xs leading-relaxed text-[#8C857D]">A small senior team, a broad capability set, and no unnecessary theatre.</span>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {principles.map((principle) => (
+              <article key={principle.number} className="rounded-3xl border border-[#E5DFC8] bg-white p-6 dark:border-[#444444] dark:bg-[#323232]">
+                <div className="flex items-center justify-between text-[#BF603C]"><span className="text-xs font-bold tracking-[0.18em]">{principle.number}</span>{principle.icon}</div>
+                <h3 className="mt-12 text-lg font-bold text-[#272727] dark:text-[#FAF8F5]">{principle.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#6B655F] dark:text-[#C5BFB8]">{principle.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-[#E5DFC8] bg-[#F2EDE4] py-20 dark:border-[#404040] dark:bg-[#1E1E1E]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#BF603C]">How the work moves</span>
+              <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.03em] text-[#272727] dark:text-[#FAF8F5] sm:text-5xl">A transparent process is part of the product.</h2>
+              <p className="mt-4 text-sm leading-relaxed text-[#6B655F] dark:text-[#C5BFB8]">The Process is not a separate handoff. It is how we make the Why Us promise tangible: clear milestones, useful decisions, and no disappearing acts.</p>
+            </div>
+            <button onClick={() => onNavigate('contact')} className="inline-flex shrink-0 items-center gap-2 text-xs font-bold text-[#BF603C] hover:text-[#A6502E]">Start with Phase 01 <ArrowRight className="h-4 w-4" /></button>
+          </div>
+
+          <div className="grid gap-3 md:grid-cols-4">
+            {PROCESS_STEPS.map((step, index) => (
+              <button key={step.number} onClick={() => setActiveStepIndex(index)} className={`rounded-2xl border p-5 text-left transition-all ${activeStepIndex === index ? 'border-[#BF603C] bg-white shadow-md dark:bg-[#323232]' : 'border-[#E5DFC8] bg-[#FAF8F5] hover:border-[#BF603C]/50 dark:border-[#444444] dark:bg-[#323232]/50'}`}>
+                <div className="flex items-center justify-between gap-3"><span className={`text-xs font-bold tracking-[0.18em] ${activeStepIndex === index ? 'text-[#BF603C]' : 'text-[#8C857D]'}`}>{step.number}</span><span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#8C857D]"><Clock3 className="h-3 w-3" />{step.duration}</span></div>
+                <h3 className={`mt-8 text-sm font-bold ${activeStepIndex === index ? 'text-[#BF603C]' : 'text-[#272727] dark:text-[#FAF8F5]'}`}>{step.title}</h3>
+              </button>
+            ))}
+          </div>
+          <div className="mt-5 h-1 overflow-hidden rounded-full bg-[#D9D0C2] dark:bg-[#444444]"><div className="h-full rounded-full bg-[#BF603C] transition-all duration-500" style={{ width: `${((activeStepIndex + 1) / PROCESS_STEPS.length) * 100}%` }} /></div>
+
+          <div className="mt-4 grid gap-8 rounded-3xl border border-[#E5DFC8] bg-white p-6 dark:border-[#444444] dark:bg-[#323232] sm:p-8 lg:grid-cols-[1fr_0.65fr]">
+            <div>
+              <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#BF603C]"><span>Phase {activeStep.number} breakdown</span><span className="text-[#BF603C]/40">/</span><span>{activeStep.duration}</span></div>
+              <h3 className="mt-3 text-2xl font-extrabold tracking-tight text-[#272727] dark:text-[#FAF8F5] sm:text-3xl">{activeStep.title}</h3>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#5C5854] dark:text-[#C5BFB8]">{activeStep.description}</p>
+              <ul className="mt-6 grid gap-3 sm:grid-cols-2">{activeStep.activities.map((activity) => <li key={activity} className="flex items-start gap-2 text-xs leading-relaxed text-[#5C5854] dark:text-[#C5BFB8]"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#BF603C]" />{activity}</li>)}</ul>
+            </div>
+            <div className="flex flex-col justify-between rounded-2xl bg-[#272727] p-6 text-[#FAF8F5] dark:bg-[#1E1E1E]">
+              <div><FileCheck className="h-6 w-6 text-[#D97852]" /><span className="mt-7 block text-[10px] font-bold uppercase tracking-[0.18em] text-[#D97852]">Milestone deliverable</span><h4 className="mt-2 text-lg font-bold text-white">{activeStep.deliverable}</h4><p className="mt-2 text-xs leading-relaxed text-[#A8A39D]">Delivered with access, documentation, and a walkthrough so your team can keep moving.</p></div>
+              <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-4 text-xs"><span className="text-[#A8A39D]">Step {activeStepIndex + 1} of {PROCESS_STEPS.length}</span><button onClick={() => setActiveStepIndex((activeStepIndex + 1) % PROCESS_STEPS.length)} className="inline-flex items-center gap-1 font-bold text-[#D97852]">Next phase <ArrowRight className="h-3.5 w-3.5" /></button></div>
+            </div>
+          </div>
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            {['Commercial goals', 'Brand assets or guidelines', 'Content or key messaging'].map((item, index) => <div key={item} className="rounded-2xl border border-[#E5DFC8] bg-[#FAF8F5] p-4 dark:border-[#444444] dark:bg-[#323232]"><span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#BF603C]/10 text-xs font-bold text-[#BF603C]">{index + 1}</span><span className="mt-3 block text-xs font-bold text-[#272727] dark:text-[#FAF8F5]">{item}</span><span className="mt-1 block text-[10px] leading-relaxed text-[#8C857D]">The only essentials needed to begin a focused sprint.</span></div>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-[#E5DFC8] bg-[#F2EDE4] py-20 dark:border-[#404040] dark:bg-[#1E1E1E]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 max-w-2xl">
+            <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#BF603C]">Where the difference becomes tangible</span>
+            <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.03em] text-[#272727] dark:text-[#FAF8F5] sm:text-4xl">A more accountable alternative to agency friction.</h2>
+          </div>
+          <div className="overflow-hidden rounded-3xl border border-[#E5DFC8] bg-white dark:border-[#444444] dark:bg-[#323232]">
+            <div className="grid grid-cols-[1fr_1.2fr_1.2fr] border-b border-[#E5DFC8] bg-[#272727] text-[10px] font-bold uppercase tracking-[0.16em] text-[#A8A39D] dark:border-[#444444]">
+              <div className="p-4 sm:p-5">What matters</div><div className="p-4 text-[#D97852] sm:p-5">Hutua</div><div className="p-4 sm:p-5">The usual alternative</div>
+            </div>
+            {comparisonRows.map(([factor, hutua, traditional]) => (
+              <div key={factor} className="grid grid-cols-[1fr_1.2fr_1.2fr] border-b border-[#E5DFC8]/70 last:border-b-0 dark:border-[#444444]">
+                <div className="p-4 text-xs font-bold text-[#272727] dark:text-[#FAF8F5] sm:p-5 sm:text-sm">{factor}</div>
+                <div className="flex items-start gap-2 bg-[#FAF8F5] p-4 text-xs leading-relaxed text-[#5C5854] dark:bg-[#272727] dark:text-[#C5BFB8] sm:p-5"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#BF603C]" />{hutua}</div>
+                <div className="flex items-start gap-2 p-4 text-xs leading-relaxed text-[#8C857D] sm:p-5"><X className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#B77B6B]" />{traditional}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#272727] py-20 text-center text-[#FAF8F5] dark:bg-[#1E1E1E]">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#D97852]">A better next step</span>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.03em] text-white sm:text-5xl">Bring us the problem worth solving.</h2>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[#C5BFB8]">Tell us where the friction is. We’ll help you identify the most useful place to start.</p>
+          <button onClick={() => onNavigate('contact')} className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#BF603C] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#A6502E]">Talk to Us <ArrowRight className="h-4 w-4" /></button>
+        </div>
+      </section>
     </div>
   );
 };

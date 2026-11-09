@@ -1,12 +1,30 @@
 import React from 'react';
 import { ServiceItem } from '../types';
-import { X, Check, ArrowRight, Clock, DollarSign, Sparkles } from 'lucide-react';
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Check,
+  Clock3,
+  DollarSign,
+  Layers3,
+  X,
+} from 'lucide-react';
 
 interface ServiceModalProps {
   service: ServiceItem | null;
   onClose: () => void;
   onSelectService: (serviceTitle: string) => void;
 }
+
+const categoryLabels: Record<string, string> = {
+  branding: 'Branding & creative',
+  web: 'Web & commerce',
+  'software-ai': 'Software & AI',
+  'marketing-it': 'Marketing & IT',
+  'advertising-pr': 'Advertising & PR',
+  'activations-events': 'Activations & events',
+  'strategy-consulting': 'Strategy & consulting',
+};
 
 export const ServiceModal: React.FC<ServiceModalProps> = ({
   service,
@@ -17,92 +35,106 @@ export const ServiceModal: React.FC<ServiceModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#272727]/80 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#272727]/80 p-3 backdrop-blur-md animate-in fade-in duration-200 sm:p-6"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl bg-white dark:bg-[#323232] border border-[#E5DFC8] dark:border-[#444444] rounded-2xl shadow-2xl p-6 sm:p-8 text-[#272727] dark:text-[#FAF8F5] overflow-hidden max-h-[90vh] overflow-y-auto"
-        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="service-modal-title"
+        className="relative grid w-full max-w-4xl overflow-hidden rounded-[1.75rem] border border-[#E5DFC8] bg-[#FAF8F5] text-[#272727] shadow-2xl dark:border-[#444444] dark:bg-[#272727] dark:text-[#FAF8F5] md:grid-cols-[0.78fr_1.22fr]"
+        onClick={(event) => event.stopPropagation()}
       >
-        {/* Header */}
-        <div className="flex items-start justify-between gap-4 pb-4 border-b border-[#E5DFC8] dark:border-[#444444]">
-          <div>
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#BF603C] block mb-1">
-              Hutua Studios Service
-            </span>
-            <h3 className="text-2xl font-bold font-display text-[#272727] dark:text-[#FAF8F5]">{service.title}</h3>
-            <p className="text-sm text-[#BF603C] font-semibold mt-0.5">{service.tagline}</p>
-          </div>
-          <button
-            onClick={onClose}
-            className="p-2 text-[#8C857D] hover:text-[#272727] dark:hover:text-[#FAF8F5] rounded-lg hover:bg-[#FAF8F5] dark:hover:bg-[#272727] transition-colors cursor-pointer"
-            aria-label="Close dialog"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
+        <aside className="relative overflow-hidden bg-[#272727] p-6 text-[#FAF8F5] dark:bg-[#1E1E1E] sm:p-8">
+          <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#BF603C]/25 blur-3xl" />
+          <div className="relative flex h-full flex-col">
+            <div className="flex items-center justify-between gap-4">
+              <span className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#D97852]">
+                <Layers3 className="h-3.5 w-3.5" />
+                {categoryLabels[service.category] || 'Specialized service'}
+              </span>
+              <button
+                onClick={onClose}
+                className="rounded-xl p-2 text-[#A8A39D] transition-colors hover:bg-white/10 hover:text-white"
+                aria-label="Close dialog"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
 
-        {/* Meta Stats Row */}
-        <div className="grid grid-cols-2 gap-4 my-5 p-4 rounded-xl bg-[#FAF8F5] dark:bg-[#272727] border border-[#E5DFC8] dark:border-[#444444]">
-          <div className="flex items-center gap-2.5">
-            <Clock className="w-4 h-4 text-[#BF603C] shrink-0" />
-            <div>
-              <span className="text-[11px] text-[#8C857D] uppercase tracking-wider block">Estimated Timeline</span>
-              <span className="text-xs sm:text-sm font-semibold text-[#272727] dark:text-[#FAF8F5]">{service.estimatedTimeline}</span>
+            <div className="mt-16 sm:mt-24">
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#A8A39D]">Scope review</span>
+              <h2 id="service-modal-title" className="mt-3 text-3xl font-extrabold leading-tight tracking-[-0.03em] text-white sm:text-4xl">
+                {service.title}
+              </h2>
+              <p className="mt-4 text-sm font-semibold leading-relaxed text-[#D97852]">{service.tagline}</p>
+            </div>
+
+            <div className="mt-auto grid gap-3 pt-12 sm:grid-cols-2 md:grid-cols-1">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <Clock3 className="h-4 w-4 text-[#D97852]" />
+                <span className="mt-3 block text-[10px] font-bold uppercase tracking-[0.16em] text-[#A8A39D]">Typical timeline</span>
+                <span className="mt-1 block text-sm font-semibold text-white">{service.estimatedTimeline}</span>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <DollarSign className="h-4 w-4 text-[#D97852]" />
+                <span className="mt-3 block text-[10px] font-bold uppercase tracking-[0.16em] text-[#A8A39D]">Starting investment</span>
+                <span className="mt-1 block text-sm font-semibold text-white">{service.startingPrice}</span>
+              </div>
             </div>
           </div>
-          <div className="flex items-center gap-2.5">
-            <DollarSign className="w-4 h-4 text-[#BF603C] shrink-0" />
-            <div>
-              <span className="text-[11px] text-[#8C857D] uppercase tracking-wider block">Starting Investment</span>
-              <span className="text-xs sm:text-sm font-semibold text-[#272727] dark:text-[#FAF8F5]">{service.startingPrice}</span>
+        </aside>
+
+        <div className="flex max-h-[90vh] flex-col overflow-y-auto p-6 sm:p-8">
+          <div className="flex-1">
+            <div className="max-w-2xl">
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#BF603C]">What this includes</span>
+              <h3 className="mt-2 text-2xl font-bold tracking-tight text-[#272727] dark:text-[#FAF8F5]">A clear scope built around the outcome.</h3>
+              <p className="mt-4 text-sm leading-relaxed text-[#5C5854] dark:text-[#C5BFB8]">{service.fullDesc}</p>
+            </div>
+
+            <div className="mt-8">
+              <div className="mb-3 flex items-center justify-between gap-4">
+                <h4 className="text-xs font-bold uppercase tracking-[0.16em] text-[#8C857D]">Key deliverables</h4>
+                <span className="text-xs text-[#8C857D]">{service.deliverables.length} included items</span>
+              </div>
+              <div className="grid gap-2 sm:grid-cols-2">
+                {service.deliverables.map((item, index) => (
+                  <div key={item} className="flex items-start gap-3 rounded-2xl border border-[#E5DFC8] bg-white/70 p-3.5 dark:border-[#444444] dark:bg-[#323232]">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#BF603C]/10 text-[10px] font-bold text-[#BF603C]">{String(index + 1).padStart(2, '0')}</span>
+                    <div className="flex items-start gap-2 text-xs leading-relaxed text-[#5C5854] dark:text-[#C5BFB8]">
+                      <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#BF603C]" />
+                      <span>{item}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Full Description */}
-        <div className="mb-6">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-[#8C857D] mb-2">Scope Overview</h4>
-          <p className="text-sm text-[#5C5854] dark:text-[#C5BFB8] leading-relaxed">{service.fullDesc}</p>
-        </div>
-
-        {/* Deliverables List */}
-        <div className="mb-8">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-[#8C857D] mb-3">Key Deliverables</h4>
-          <ul className="space-y-2.5 text-xs sm:text-sm text-[#272727] dark:text-[#FAF8F5]">
-            {service.deliverables.map((item, idx) => (
-              <li key={idx} className="flex items-start gap-2.5">
-                <div className="w-4 h-4 rounded-full bg-[#BF603C]/10 text-[#BF603C] flex items-center justify-center shrink-0 mt-0.5">
-                  <Check className="w-3 h-3" />
-                </div>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Actions */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-5 border-t border-[#E5DFC8] dark:border-[#444444]">
-          <div className="text-xs text-[#8C857D]">
-            Includes 30-day warranty &amp; 100% intellectual property transfer.
-          </div>
-          <div className="flex items-center gap-3 w-full sm:w-auto">
-            <button
-              onClick={onClose}
-              className="w-1/2 sm:w-auto px-4 py-2 text-xs font-medium text-[#6B655F] dark:text-[#A8A39D] hover:text-[#272727] dark:hover:text-[#FAF8F5] bg-[#F2EDE4] dark:bg-[#272727] rounded-xl transition-colors cursor-pointer"
-            >
-              Close
-            </button>
-            <button
-              onClick={() => {
-                onSelectService(service.title);
-                onClose();
-              }}
-              className="w-1/2 sm:w-auto px-5 py-2 text-xs font-semibold text-white bg-[#BF603C] hover:bg-[#A6502E] rounded-xl shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-            >
-              <span>Book This Service</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+          <div className="mt-8 flex flex-col gap-4 border-t border-[#E5DFC8] pt-5 dark:border-[#444444] sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold text-[#272727] dark:text-[#FAF8F5]">Ready to make this real?</p>
+              <p className="mt-1 text-[11px] text-[#8C857D]">30-day warranty · 100% IP transfer · clear milestone scope</p>
+            </div>
+            <div className="flex w-full items-center gap-2 sm:w-auto">
+              <button
+                onClick={onClose}
+                className="flex-1 rounded-xl bg-[#F2EDE4] px-4 py-2.5 text-xs font-semibold text-[#6B655F] transition-colors hover:bg-[#E5DFC8] hover:text-[#272727] dark:bg-[#323232] dark:text-[#C5BFB8] dark:hover:bg-[#444444] dark:hover:text-[#FAF8F5] sm:flex-none"
+              >
+                Keep browsing
+              </button>
+              <button
+                onClick={() => {
+                  onSelectService(service.title);
+                  onClose();
+                }}
+                className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-[#BF603C] px-4 py-2.5 text-xs font-semibold text-white shadow-md transition-colors hover:bg-[#A6502E] sm:flex-none"
+              >
+                Start a conversation
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

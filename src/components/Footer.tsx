@@ -1,16 +1,13 @@
 import React from 'react';
 import { PageType } from '../types';
-import { SERVICES_DATA } from '../data/agencyData';
 import { ArrowUpRight, Mail, Phone, MapPin, Globe, Github, Twitter, Linkedin, MessageCircle } from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (page: PageType) => void;
-  onSelectServiceModal: (serviceTitle: string) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   onNavigate,
-  onSelectServiceModal,
 }) => {
   const currentYear = 2026;
 
@@ -36,7 +33,7 @@ export const Footer: React.FC<FooterProps> = ({
             onClick={() => handleNavClick('contact')}
             className="px-6 py-3 text-xs sm:text-sm font-semibold text-white bg-[#BF603C] hover:bg-[#A6502E] rounded-xl shadow-md transition-all flex items-center gap-2 cursor-pointer whitespace-nowrap shrink-0"
           >
-            <span>Book a Free Consultation</span>
+            <span>Talk to Us</span>
             <ArrowUpRight className="w-4 h-4" />
           </button>
         </div>
@@ -47,14 +44,14 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="lg:col-span-2">
             <button
               onClick={() => handleNavClick('home')}
-              className="flex items-center gap-2 text-xl font-bold font-display text-white mb-4 text-left cursor-pointer"
+              className="flex items-center text-left cursor-pointer mb-4"
+              aria-label="Hutua Studios home"
             >
-              <span className="w-7 h-7 rounded-lg bg-[#BF603C] flex items-center justify-center text-white text-xs font-black">
-                H
-              </span>
-              <span>
-                Hutua <span className="text-[#BF603C]">Studios</span>
-              </span>
+              <img
+                src="/assets/brand/hatua-logo-horizontal-reversed-2000.png"
+                alt="Hutua Studios"
+                className="h-10 w-[148px] object-contain object-left"
+              />
             </button>
             <p className="text-xs sm:text-sm text-[#A8A39D] leading-relaxed max-w-sm mb-6">
               A modern digital engineering and creative agency building high-converting websites, e-commerce stores, custom software, and AI solutions for forward-thinking enterprises.
@@ -107,9 +104,8 @@ export const Footer: React.FC<FooterProps> = ({
             <ul className="space-y-2 text-xs text-[#A8A39D]">
               {[
                 { label: 'Home', page: 'home' as PageType },
-                { label: 'Services (8)', page: 'services' as PageType },
-                { label: 'Why Us', page: 'why-us' as PageType },
-                { label: 'Our Process', page: 'process' as PageType },
+                { label: 'Services (48)', page: 'services' as PageType },
+                { label: 'Why Us + Process', page: 'why-us' as PageType },
                 { label: 'Case Studies', page: 'work' as PageType },
                 { label: 'FAQ', page: 'faq' as PageType },
                 { label: 'Contact', page: 'contact' as PageType },
@@ -126,22 +122,27 @@ export const Footer: React.FC<FooterProps> = ({
             </ul>
           </div>
 
-          {/* Core Services (All 8 listed) */}
+          {/* Service categories */}
           <div className="lg:col-span-2">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
-              Our 8 Core Disciplines
+              Explore by Category
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-xs text-[#A8A39D]">
-              {SERVICES_DATA.map((srv) => (
+              {[
+                'Branding & Creative Design',
+                'Website & E-Commerce',
+                'Digital Marketing & Social Media',
+                'Advertising, SEO & Public Relations',
+                'Brand Activations, Promotions & Events',
+                'Technology & Software Solutions',
+                'Strategy & Consulting',
+              ].map((category) => (
                 <button
-                  key={srv.id}
-                  onClick={() => {
-                    handleNavClick('services');
-                    onSelectServiceModal(srv.title);
-                  }}
+                  key={category}
+                  onClick={() => handleNavClick('services')}
                   className="text-left hover:text-[#BF603C] transition-colors cursor-pointer truncate"
                 >
-                  {srv.title}
+                  {category}
                 </button>
               ))}
             </div>

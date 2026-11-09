@@ -49,7 +49,7 @@ export const Hero: React.FC<HeroProps> = ({
                 onClick={onBookConsultation}
                 className="px-6 py-3.5 text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 via-blue-600 to-blue-700 hover:from-cyan-400 hover:to-blue-600 rounded-xl shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all flex items-center gap-2 cursor-pointer group"
               >
-                <span>Book a Free Consultation</span>
+                <span>Talk to Us</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
 

@@ -17,19 +17,19 @@ import {
   ShieldCheck,
   Zap,
   Clock,
+  PartyPopper,
+  Rocket,
 } from 'lucide-react';
-import { ProjectEstimator } from '../components/ProjectEstimator';
+import { ContactSection } from '../components/ContactSection';
 
 interface HomePageProps {
   onNavigate: (page: PageType) => void;
   onSelectServiceModal: (service: ServiceItem) => void;
-  onApplyEstimate: (data: { service: string; budget: string; notes: string }) => void;
 }
 
 export const HomePage: React.FC<HomePageProps> = ({
   onNavigate,
   onSelectServiceModal,
-  onApplyEstimate,
 }) => {
   const getServiceIcon = (iconName: string) => {
     switch (iconName) {
@@ -41,223 +41,172 @@ export const HomePage: React.FC<HomePageProps> = ({
       case 'Code2': return <Code2 className="w-5 h-5 text-[#BF603C]" />;
       case 'Bot': return <Bot className="w-5 h-5 text-[#BF603C]" />;
       case 'LifeBuoy': return <LifeBuoy className="w-5 h-5 text-[#BF603C]" />;
+      case 'PartyPopper': return <PartyPopper className="w-5 h-5 text-[#BF603C]" />;
+      case 'Rocket': return <Rocket className="w-5 h-5 text-[#BF603C]" />;
       default: return <Globe className="w-5 h-5 text-[#BF603C]" />;
     }
   };
 
+  const featuredTitles = [
+    'Logo & Corporate Identity',
+    'Basic Website Design',
+    'E-Commerce Website Design',
+    'Social Media Packages',
+    'Creative Ad Design',
+    'Brand Activations',
+    'Software & Applications',
+    'Go-To-Market Strategy',
+  ];
+  const featuredServices = featuredTitles
+    .map((title) => SERVICES_DATA.find((service) => service.title === title))
+    .filter((service): service is ServiceItem => Boolean(service));
+
+  const homepageCategories = [
+    ['01', 'Branding & Creative Design', 'Identity systems, content, and visual production.', '6 services'],
+    ['02', 'Website & E-Commerce', 'Websites, stores, marketplaces, and care plans.', '5 services'],
+    ['03', 'Digital Marketing & Social Media', 'Content, community, campaigns, and analytics.', '6 services'],
+    ['04', 'Advertising, SEO & Public Relations', 'Paid media, search visibility, and reputation.', '11 services'],
+    ['05', 'Brand Activations, Promotions & Events', 'Experiences, promotions, print, and events.', '11 services'],
+    ['06', 'Technology & Software Solutions', 'Apps, AI, IT support, and digital products.', '6 services'],
+    ['07', 'Strategy & Consulting', 'Transformation, market entry, and research.', '3 services'],
+  ];
+
   return (
     <div className="space-y-0">
-      {/* 1. Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-[#FAF8F5] dark:bg-[#272727] text-[#272727] dark:text-[#FAF8F5] border-b border-[#E5DFC8] dark:border-[#404040]">
-        {/* Subtle warm architectural glow */}
-        <div
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-[#BF603C]/5 blur-3xl pointer-events-none rounded-full"
-          aria-hidden="true"
-        />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-            {/* Left Content */}
-            <div className="lg:col-span-7 flex flex-col justify-center text-left">
-              {/* Clean unboxed kicker */}
-              <div className="flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-[#BF603C] mb-4">
-                <span>Digital Agency &amp; Software Solutions</span>
-                <span aria-hidden="true" className="text-[#BF603C]/40">·</span>
-                <span>Web · Commerce · Apps · AI</span>
+      {/* 1. Editorial Hero */}
+      <section className="relative overflow-hidden border-b border-[#E5DFC8] bg-[#F2EDE4] pb-16 pt-28 text-[#272727] dark:border-[#404040] dark:bg-[#1E1E1E] dark:text-[#FAF8F5] sm:pb-24 sm:pt-36">
+        <div className="pointer-events-none absolute -right-32 top-20 h-80 w-80 rounded-full bg-[#BF603C]/15 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 left-[-12rem] h-64 w-64 rounded-full bg-[#E5DFC8]/70 blur-3xl dark:bg-[#BF603C]/5" />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl">
+            <div>
+              <div className="mb-6 flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#BF603C]">
+                <span>Hutua Studios</span>
+                <span className="text-[#BF603C]/40">/</span>
+                <span>Digital systems for ambitious businesses</span>
               </div>
-
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6 text-balance text-[#272727] dark:text-[#FAF8F5]">
-                Digital Products Crafted for <span className="text-[#BF603C]">Real Commercial Growth</span> and Impact.
+              <h1 className="max-w-4xl text-5xl font-extrabold leading-[0.96] tracking-[-0.055em] text-[#272727] dark:text-[#FAF8F5] sm:text-7xl lg:text-[5.5rem]">
+                Make your next move <span className="text-[#BF603C]">impossible to ignore.</span>
               </h1>
-
-              <p className="text-lg sm:text-xl text-[#5C5854] dark:text-[#C5BFB8] leading-relaxed max-w-2xl mb-8">
-                Hutua Studios designs and engineers high-performance websites, scalable e-commerce systems, custom software applications, and AI workflows for modern businesses.
+              <p className="mt-7 max-w-xl text-base leading-relaxed text-[#5C5854] dark:text-[#C5BFB8] sm:text-lg">
+                We turn brand ambition into high-performing websites, commerce experiences, software, campaigns, and launch moments that move the business forward.
               </p>
-
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-4 mb-10">
+              <div className="mt-9 flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => onNavigate('contact')}
-                  className="px-6 py-3.5 text-sm font-semibold text-white bg-[#BF603C] hover:bg-[#A6502E] rounded-xl shadow-md transition-all flex items-center gap-2 cursor-pointer group"
+                  className="group inline-flex items-center gap-2 rounded-xl bg-[#BF603C] px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#BF603C]/20 transition-colors hover:bg-[#A6502E]"
                 >
-                  <span>Book a Free Consultation</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  Start with a brief
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
-
                 <button
                   onClick={() => onNavigate('work')}
-                  className="px-6 py-3.5 text-sm font-semibold text-[#272727] dark:text-[#FAF8F5] bg-white dark:bg-[#323232] hover:bg-[#F2EDE4] dark:hover:bg-[#3B3B3B] border border-[#E5DFC8] dark:border-[#484848] rounded-xl transition-all flex items-center gap-2 cursor-pointer"
+                  className="inline-flex items-center gap-2 rounded-xl border border-[#D9D0C2] bg-[#FAF8F5]/70 px-5 py-3.5 text-sm font-semibold text-[#272727] transition-colors hover:border-[#BF603C] hover:text-[#BF603C] dark:border-[#484848] dark:bg-[#323232]/70 dark:text-[#FAF8F5]"
                 >
-                  <span>View Our Work</span>
-                  <ArrowUpRight className="w-4 h-4 text-[#BF603C]" />
-                </button>
-
-                <button
-                  onClick={() => onNavigate('services')}
-                  className="px-4 py-3.5 text-sm font-medium text-[#6B655F] dark:text-[#A8A39D] hover:text-[#BF603C] transition-colors cursor-pointer"
-                >
-                  Explore 8 Services →
+                  See the work
+                  <ArrowUpRight className="h-4 w-4 text-[#BF603C]" />
                 </button>
               </div>
-
-              {/* Value metrics strip */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-3 gap-x-6 pt-6 border-t border-[#E5DFC8] dark:border-[#404040] text-xs text-[#6B655F] dark:text-[#A8A39D]">
-                <div className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#BF603C] shrink-0" />
-                  <span>14-Day Fast Turnaround</span>
+              <div className="mt-10 grid max-w-xl grid-cols-3 border-t border-[#D9D0C2] pt-5 dark:border-[#404040]">
+                <div>
+                  <span className="block text-2xl font-bold tracking-tight text-[#272727] dark:text-[#FAF8F5]">48</span>
+                  <span className="mt-1 block text-[10px] font-bold uppercase tracking-wider text-[#8C857D]">Services</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#BF603C] shrink-0" />
-                  <span>Transparent Fixed Scope</span>
+                <div className="border-l border-[#D9D0C2] pl-4 dark:border-[#404040]">
+                  <span className="block text-2xl font-bold tracking-tight text-[#272727] dark:text-[#FAF8F5]">14d</span>
+                  <span className="mt-1 block text-[10px] font-bold uppercase tracking-wider text-[#8C857D]">Avg. launch</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#BF603C] shrink-0" />
-                  <span>30-Day Launch Warranty</span>
+                <div className="border-l border-[#D9D0C2] pl-4 dark:border-[#404040]">
+                  <span className="block text-2xl font-bold tracking-tight text-[#272727] dark:text-[#FAF8F5]">30d</span>
+                  <span className="mt-1 block text-[10px] font-bold uppercase tracking-wider text-[#8C857D]">Warranty</span>
                 </div>
               </div>
             </div>
 
-            {/* Right Media Preview */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative mx-auto max-w-lg lg:max-w-none">
-                <div className="relative rounded-2xl overflow-hidden border border-[#E5DFC8] dark:border-[#444444] bg-white dark:bg-[#323232] shadow-xl group">
-                  <div className="aspect-[16/10] relative bg-[#272727] overflow-hidden">
-                    <img
-                      src="/src/assets/images/hero_digital_agency_1794215534968.jpg"
-                      alt="Hutua Studios high-performance digital engineering"
-                      className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#272727]/70 via-transparent to-transparent pointer-events-none" />
-                  </div>
-
-                  {/* Overlaid stat bar */}
-                  <div className="p-5 bg-white dark:bg-[#323232] border-t border-[#E5DFC8] dark:border-[#404040]">
-                    <div className="flex items-center justify-between text-xs text-[#272727] dark:text-[#FAF8F5]">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#BF603C]" />
-                        <span className="font-semibold">Hutua Delivery Standard</span>
-                      </div>
-                      <span className="text-xs text-[#6B655F] dark:text-[#A8A39D]">Continuous SLA</span>
-                    </div>
-
-                    <div className="mt-3 grid grid-cols-3 gap-2 pt-2 border-t border-[#E5DFC8]/60 dark:border-[#404040] text-[11px] text-[#6B655F] dark:text-[#A8A39D]">
-                      <div>
-                        <span className="block text-[#8C857D]">Turnaround</span>
-                        <span className="font-semibold text-[#272727] dark:text-[#FAF8F5] tabular-nums">14 Days Avg.</span>
-                      </div>
-                      <div>
-                        <span className="block text-[#8C857D]">Code Quality</span>
-                        <span className="font-semibold text-[#272727] dark:text-[#FAF8F5] tabular-nums">99+ Vitals</span>
-                      </div>
-                      <div>
-                        <span className="block text-[#8C857D]">Conversion</span>
-                        <span className="font-semibold text-[#BF603C] tabular-nums">+142% Avg.</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* 2. Trust Bar */}
-      <section className="py-10 bg-[#F2EDE4]/60 dark:bg-[#1E1E1E] border-b border-[#E5DFC8] dark:border-[#404040]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 pb-8 border-b border-[#E5DFC8] dark:border-[#333333]">
+      {/* 2. Proof & Trust */}
+      <section className="border-b border-[#404040] bg-[#272727] py-12 text-[#FAF8F5] dark:bg-[#1E1E1E]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#D97852]">Proof over promises</span>
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl">Built to create momentum, not just deliverables.</h2>
+            </div>
+            <span className="max-w-xs text-xs leading-relaxed text-[#A8A39D]">A focused partner for the work that needs to perform after launch.</span>
+          </div>
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
             {TRUST_STATS.map((stat, idx) => (
-              <div key={idx} className="flex flex-col items-center md:items-start text-center md:text-left">
-                <span className="text-3xl sm:text-4xl font-extrabold font-display text-[#BF603C] tabular-nums">
-                  {stat.value}
-                </span>
-                <span className="text-xs sm:text-sm font-medium text-[#6B655F] dark:text-[#A8A39D] mt-1">
-                  {stat.label}
-                </span>
+              <div key={idx} className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5">
+                <span className="block text-3xl font-extrabold tracking-tight text-[#D97852] sm:text-4xl">{stat.value}</span>
+                <span className="mt-2 block text-[10px] font-bold uppercase tracking-wider text-[#A8A39D]">{stat.label}</span>
               </div>
             ))}
           </div>
-
-          <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-xs uppercase tracking-wider font-semibold text-[#8C857D] shrink-0">
-              Trusted by startups, local businesses &amp; entrepreneurs
-            </p>
-            <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-8 gap-y-3">
-              {CLIENT_LOGOS.map((client, idx) => (
-                <div key={idx} className="flex items-center gap-1.5 text-[#5C5854] dark:text-[#C5BFB8]">
-                  <div className="w-5 h-5 rounded bg-[#FAF8F5] dark:bg-[#272727] border border-[#E5DFC8] dark:border-[#444444] flex items-center justify-center text-[10px] font-bold text-[#BF603C]">
-                    {client.symbol[0]}
+          <div className="mt-8 border-t border-white/10 pt-5">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-10">
+              <div className="shrink-0">
+                <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-[#D97852]">Selected collaborators</span>
+                <span className="mt-1 block text-xs text-[#A8A39D]">Trusted by startups, local businesses &amp; entrepreneurs</span>
+              </div>
+              <div className="grid flex-1 grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
+                {CLIENT_LOGOS.map((client, idx) => (
+                  <div key={idx} className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2.5 text-[#C5BFB8]">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[#BF603C]/15 text-[10px] font-bold text-[#D97852]">{client.symbol[0]}</span>
+                    <span className="truncate text-[11px] font-semibold">{client.name}</span>
                   </div>
-                  <span className="text-xs sm:text-sm font-semibold tracking-wide">
-                    {client.name}
-                  </span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. The 8 Services Preview */}
-      <section className="py-20 bg-[#FAF8F5] dark:bg-[#272727] text-[#272727] dark:text-[#FAF8F5]">
+      {/* 3. Capability Categories */}
+      <section className="bg-[#FAF8F5] py-24 text-[#272727] dark:bg-[#272727] dark:text-[#FAF8F5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#BF603C] mb-2">
+              <div className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#BF603C]">
                 <span>Our Capabilities</span>
                 <span aria-hidden="true" className="text-[#BF603C]/40">·</span>
-                <span>8 Core Disciplines</span>
+                <span>7 disciplines / 48 services</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold font-display tracking-tight text-[#272727] dark:text-[#FAF8F5]">
-                Full-Service Digital Solutions Built to Convert.
+              <h2 className="max-w-2xl text-3xl font-extrabold tracking-[-0.03em] text-[#272727] dark:text-[#FAF8F5] sm:text-5xl">
+                The right specialist for every stage of growth.
               </h2>
+              <p className="mt-4 max-w-xl text-sm leading-relaxed text-[#6B655F] dark:text-[#C5BFB8]">Move from first impression to full-scale operation with one connected team across brand, growth, experience, technology, and strategy.</p>
             </div>
             <button
               onClick={() => onNavigate('services')}
               className="text-xs sm:text-sm font-semibold text-[#BF603C] hover:text-[#A6502E] flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
             >
-              <span>View All 8 Services with Scope &amp; Pricing</span>
+              <span>Explore All 48 Services</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {SERVICES_DATA.map((srv, idx) => (
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-12">
+            {homepageCategories.map(([number, title, description, count], idx) => (
               <div
-                key={srv.id}
-                className="p-6 rounded-2xl bg-white dark:bg-[#323232] border border-[#E5DFC8] dark:border-[#444444] shadow-sm hover:shadow-md transition-all flex flex-col justify-between group"
+                key={title}
+                onClick={() => onNavigate('services')}
+                className={`group relative flex min-h-[190px] cursor-pointer flex-col justify-between overflow-hidden rounded-3xl border bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-[#BF603C]/60 hover:shadow-xl dark:bg-[#323232] ${idx === 0 || idx === 4 ? 'md:col-span-6 border-[#BF603C]/50' : 'md:col-span-3 border-[#E5DFC8] dark:border-[#444444]'}`}
               >
+                <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[#BF603C]/5 transition-transform duration-500 group-hover:scale-150" />
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-[#FAF8F5] dark:bg-[#272727] border border-[#E5DFC8] dark:border-[#444444] flex items-center justify-center">
-                      {getServiceIcon(srv.iconName)}
-                    </div>
-                    <span className="text-xs font-mono text-[#8C857D] tabular-nums">0{idx + 1}</span>
+                  <div className="mb-10 flex items-center justify-between">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#BF603C]">Category {number}</span>
+                    <ArrowUpRight className="h-4 w-4 text-[#BF603C] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </div>
-
-                  <h3 className="text-base font-bold font-display text-[#272727] dark:text-[#FAF8F5] group-hover:text-[#BF603C] transition-colors">
-                    {srv.title}
-                  </h3>
-                  <p className="text-xs font-semibold text-[#BF603C] mt-1 mb-2">
-                    {srv.tagline}
-                  </p>
-                  <p className="text-xs text-[#6B655F] dark:text-[#A8A39D] line-clamp-3 leading-relaxed mb-4">
-                    {srv.shortDesc}
-                  </p>
+                  <h3 className="max-w-sm text-lg font-bold leading-snug text-[#272727] transition-colors group-hover:text-[#BF603C] dark:text-[#FAF8F5]">{title}</h3>
+                  <p className="mt-2 max-w-sm text-xs leading-relaxed text-[#6B655F] dark:text-[#A8A39D]">{description}</p>
                 </div>
-
-                <div className="pt-4 border-t border-[#E5DFC8]/60 dark:border-[#404040] flex items-center justify-between">
-                  <span className="text-[11px] font-semibold text-[#272727] dark:text-[#FAF8F5]">
-                    From {srv.startingPrice}
-                  </span>
-                  <button
-                    onClick={() => onSelectServiceModal(srv)}
-                    className="text-xs font-medium text-[#BF603C] hover:text-[#A6502E] flex items-center gap-1 cursor-pointer"
-                  >
-                    <span>Details</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </button>
+                <div className="mt-6 flex items-center justify-between border-t border-[#E5DFC8]/60 pt-3 text-[10px] font-bold uppercase tracking-wider text-[#8C857D] dark:border-[#404040]">
+                  <span>{count}</span>
+                  <span className="text-[#BF603C]">Explore category</span>
                 </div>
               </div>
             ))}
@@ -265,64 +214,46 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 4. Process & Why Us Highlight */}
-      <section className="py-20 bg-[#F2EDE4]/60 dark:bg-[#1E1E1E] border-y border-[#E5DFC8] dark:border-[#404040]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-5">
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#BF603C] mb-2">
+      {/* 4. The Hutua Standard */}
+      <section className="border-y border-[#404040] bg-[#272727] py-24 text-[#FAF8F5] dark:bg-[#1E1E1E]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-5 border-b border-white/10 pb-10 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <div className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#D97852]">
                 <span>The Hutua Standard</span>
-                <span aria-hidden="true" className="text-[#BF603C]/40">·</span>
-                <span>Structured Delivery</span>
+                <span className="text-white/30">/</span>
+                <span>How work moves</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold font-display tracking-tight text-[#272727] dark:text-[#FAF8F5] mb-4">
-                From Strategy to Scalable Launch in 4 Clear Sprints.
-              </h2>
-              <p className="text-sm text-[#5C5854] dark:text-[#C5BFB8] leading-relaxed mb-6">
-                We remove the guesswork with milestone-based delivery, dedicated staging environments, and daily async updates.
-              </p>
-              <div className="space-y-3 mb-8">
-                {PROCESS_STEPS.map((step) => (
-                  <div key={step.number} className="flex items-center gap-3 text-xs sm:text-sm font-medium text-[#272727] dark:text-[#FAF8F5]">
-                    <div className="w-6 h-6 rounded-md bg-[#BF603C]/10 text-[#BF603C] flex items-center justify-center font-bold text-xs shrink-0">
-                      {step.number}
-                    </div>
-                    <span>{step.title}</span>
-                    <span className="text-xs text-[#8C857D] ml-auto">{step.duration}</span>
-                  </div>
-                ))}
-              </div>
-              <button
-                onClick={() => onNavigate('process')}
-                className="px-5 py-2.5 text-xs font-semibold text-white bg-[#272727] dark:bg-[#BF603C] hover:bg-[#BF603C] dark:hover:bg-[#A6502E] rounded-xl transition-colors cursor-pointer"
-              >
-                Explore Full 4-Step Process →
+              <h2 className="text-3xl font-extrabold leading-tight tracking-[-0.03em] text-white sm:text-5xl">A calm, accountable path from idea to impact.</h2>
+            </div>
+            <div className="max-w-sm">
+              <p className="text-sm leading-relaxed text-[#C5BFB8]">No black boxes or disappearing handoffs. Every project has a visible next step, a named owner, and a clear definition of done.</p>
+              <button onClick={() => onNavigate('why-us')} className="mt-5 inline-flex items-center gap-2 text-xs font-bold text-[#D97852] transition-colors hover:text-white">
+                Explore the full delivery process <ArrowRight className="h-4 w-4" />
               </button>
             </div>
-
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {VALUE_PROPS.map((prop) => (
-                <div
-                  key={prop.id}
-                  className="p-5 rounded-2xl bg-white dark:bg-[#272727] border border-[#E5DFC8] dark:border-[#444444] shadow-sm flex flex-col justify-between"
-                >
-                  <div>
-                    <span className="text-lg font-extrabold font-display text-[#BF603C] tabular-nums block mb-1">
-                      {prop.metric}
-                    </span>
-                    <h4 className="text-sm font-bold text-[#272727] dark:text-[#FAF8F5] mb-2">
-                      {prop.title}
-                    </h4>
-                    <p className="text-xs text-[#6B655F] dark:text-[#A8A39D] leading-relaxed">
-                      {prop.description}
-                    </p>
-                  </div>
-                  <span className="text-[11px] text-[#8C857D] pt-3 mt-3 border-t border-[#E5DFC8]/60 dark:border-[#383838]">
-                    {prop.metricLabel}
-                  </span>
+          </div>
+          <div className="grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 md:grid-cols-4">
+            {PROCESS_STEPS.map((step, index) => (
+              <div key={step.number} className="group relative bg-[#2D2D2D] p-6 transition-colors hover:bg-[#353535] dark:bg-[#242424] dark:hover:bg-[#2D2D2D]">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold tracking-[0.18em] text-[#D97852]">{step.number}</span>
+                  {index < PROCESS_STEPS.length - 1 && <ArrowRight className="hidden h-4 w-4 text-white/20 md:block" />}
                 </div>
-              ))}
-            </div>
+                <h3 className="mt-12 text-base font-bold text-white">{step.title}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-[#A8A39D]">{step.description}</p>
+                <span className="mt-6 block border-t border-white/10 pt-3 text-[10px] font-bold uppercase tracking-wider text-[#A8A39D]">{step.duration}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {VALUE_PROPS.map((prop) => (
+              <div key={prop.id} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <span className="block text-xl font-extrabold tracking-tight text-[#D97852]">{prop.metric}</span>
+                <span className="mt-1 block text-xs font-semibold text-white">{prop.title}</span>
+                <span className="mt-2 block text-[10px] leading-relaxed text-[#A8A39D]">{prop.metricLabel}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -392,12 +323,8 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 6. Interactive Estimator Tool on Home */}
-      <section className="py-12 bg-[#F2EDE4]/40 dark:bg-[#1E1E1E]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ProjectEstimator onApplyEstimate={onApplyEstimate} />
-        </div>
-      </section>
+      {/* 6. Contact Form on Home */}
+      <ContactSection />
 
       {/* 7. Bottom Conversion Banner */}
       <section className="py-20 bg-[#272727] text-[#FAF8F5] border-t border-[#404040]">
@@ -416,7 +343,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               onClick={() => onNavigate('contact')}
               className="px-6 py-3.5 text-sm font-semibold text-white bg-[#BF603C] hover:bg-[#A6502E] rounded-xl shadow-lg transition-all flex items-center gap-2 cursor-pointer"
             >
-              <span>Book a Free Consultation</span>
+              <span>Talk to Us</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <a
