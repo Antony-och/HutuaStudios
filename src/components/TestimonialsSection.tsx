@@ -26,7 +26,7 @@ export const TestimonialsSection: React.FC = () => {
             <span>100% Client Satisfaction</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold font-display tracking-tight text-white">
-            What Founders Say About Working with Hutua Studios.
+            What Founders Say About Working with Hatua Studios.
           </h2>
           <p className="text-slate-400 mt-3 text-base leading-relaxed">
             Direct feedback from teams that accelerated their digital transformation with our engineering and design sprints.

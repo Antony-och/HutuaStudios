@@ -121,7 +121,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               {/* Instant WhatsApp & Email CTA buttons */}
               <div className="space-y-4 pt-4 border-t border-[#E5DFC8] dark:border-[#404040]">
                 <a
-                  href="https://wa.me/15550194821?text=Hello%20Hutua%20Studios,%20I'd%20like%20to%20discuss%20a%20new%20project"
+                  href="https://wa.me/15550194821?text=Hello%20Hatua%20Studios,%20I'd%20like%20to%20discuss%20a%20new%20project"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-5 rounded-2xl bg-white dark:bg-[#323232] border border-[#E5DFC8] dark:border-[#444444] hover:border-[#BF603C] shadow-sm flex items-center justify-between group transition-colors"
@@ -143,7 +143,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 </a>
 
                 <a
-                  href="mailto:hello@hutuastudios.com?subject=Project%20Inquiry%20-%20Hutua%20Studios"
+                  href="mailto:hello@hutuastudios.com?subject=Project%20Inquiry%20-%20Hatua%20Studios"
                   className="p-5 rounded-2xl bg-white dark:bg-[#323232] border border-[#E5DFC8] dark:border-[#444444] hover:border-[#BF603C] shadow-sm flex items-center justify-between group transition-colors"
                 >
                   <div className="flex items-center gap-3.5">

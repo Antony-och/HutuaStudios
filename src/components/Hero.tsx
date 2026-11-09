@@ -95,7 +95,7 @@ export const Hero: React.FC<HeroProps> = ({
                 <div className="aspect-[16/10] relative bg-slate-900 overflow-hidden">
                   <img
                     src="/src/assets/images/hero_digital_agency_1794215534968.jpg"
-                    alt="Hutua Studios modern digital engineering and interface design showcase"
+                    alt="Hatua Studios modern digital engineering and interface design showcase"
                     className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                     onError={(e) => {

@@ -52,7 +52,7 @@ export const WhyUsSection: React.FC = () => {
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-400 mb-3">
-            <span>Why Hutua Studios</span>
+            <span>Why Hatua Studios</span>
             <span aria-hidden="true" className="text-slate-600">·</span>
             <span>Agency Built for Results</span>
           </div>
@@ -98,7 +98,7 @@ export const WhyUsSection: React.FC = () => {
         {/* Comparative Advantage Matrix */}
         <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-6 sm:p-8 overflow-hidden">
           <h3 className="text-lg font-bold font-display text-white mb-2">
-            The Hutua Studios Advantage
+            The Hatua Studios Advantage
           </h3>
           <p className="text-xs text-slate-400 mb-6">
             How we compare against traditional agencies and unvetted freelancers.
@@ -110,7 +110,7 @@ export const WhyUsSection: React.FC = () => {
                 <tr className="border-b border-slate-800 text-slate-400">
                   <th className="py-3 px-4 font-semibold uppercase tracking-wider text-[11px]">Evaluation Criteria</th>
                   <th className="py-3 px-4 font-bold text-cyan-400 uppercase tracking-wider text-[11px] bg-cyan-950/20 rounded-t-lg">
-                    Hutua Studios
+                    Hatua Studios
                   </th>
                   <th className="py-3 px-4 font-semibold uppercase tracking-wider text-[11px] text-slate-500">
                     Traditional Agencies

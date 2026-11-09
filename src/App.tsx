@@ -49,15 +49,15 @@ export default function App() {
     const resolvedPage: PageType = page === 'process' ? 'why-us' : page;
     setCurrentPage(resolvedPage);
     const pageTitles: Record<PageType, string> = {
-      home: 'Hutua Studios | Modern Digital Agency & Software Solutions',
-      services: 'Services & Disciplines | Hutua Studios',
-      'why-us': 'Why Hutua Studios | Agency Advantage',
-      process: '4-Step Sprint Methodology | Hutua Studios',
-      work: 'Portfolio & Case Studies | Hutua Studios',
-      faq: 'Frequently Asked Questions | Hutua Studios',
-      contact: 'Talk to Us | Hutua Studios',
+      home: 'Hatua Studios | Modern Digital Agency & Software Solutions',
+      services: 'Services & Disciplines | Hatua Studios',
+      'why-us': 'Why Hatua Studios | Agency Advantage',
+      process: '4-Step Sprint Methodology | Hatua Studios',
+      work: 'Portfolio & Case Studies | Hatua Studios',
+      faq: 'Frequently Asked Questions | Hatua Studios',
+      contact: 'Talk to Us | Hatua Studios',
     };
-    document.title = pageTitles[resolvedPage] || 'Hutua Studios';
+    document.title = pageTitles[resolvedPage] || 'Hatua Studios';
 
     const newPath = resolvedPage === 'home' ? '/' : `/${resolvedPage}`;
     if (window.location.pathname !== newPath) {

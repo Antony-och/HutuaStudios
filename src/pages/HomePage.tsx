@@ -81,7 +81,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           <div className="max-w-5xl">
             <div>
               <div className="mb-6 flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#BF603C]">
-                <span>Hutua Studios</span>
+                <span>Hatua Studios</span>
                 <span className="text-[#BF603C]/40">/</span>
                 <span>Digital systems for ambitious businesses</span>
               </div>
@@ -214,13 +214,13 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 4. The Hutua Standard */}
+      {/* 4. The Hatua Standard */}
       <section className="border-y border-[#404040] bg-[#272727] py-24 text-[#FAF8F5] dark:bg-[#1E1E1E]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-5 border-b border-white/10 pb-10 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <div className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#D97852]">
-                <span>The Hutua Standard</span>
+                <span>The Hatua Standard</span>
                 <span className="text-white/30">/</span>
                 <span>How work moves</span>
               </div>
@@ -347,7 +347,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <ArrowRight className="w-4 h-4" />
             </button>
             <a
-              href="https://wa.me/15550194821?text=Hello%20Hutua%20Studios,%20I'd%20like%20to%20discuss%20a%20project"
+              href="https://wa.me/15550194821?text=Hello%20Hatua%20Studios,%20I'd%20like%20to%20discuss%20a%20project"
               target="_blank"
               rel="noreferrer"
               className="px-6 py-3.5 text-sm font-semibold text-[#FAF8F5] bg-[#323232] hover:bg-[#3E3E3E] border border-[#484848] rounded-xl transition-all cursor-pointer"
