@@ -59,7 +59,7 @@ export const WhyUsPage: React.FC<WhyUsPageProps> = ({ onNavigate }) => {
           <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
             <div>
               <div className="mb-6 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#D97852]">
-                <span>Why Hutua Studios</span>
+                <span>Why Hatua Studios</span>
                 <span className="text-white/30">/</span>
                 <span>A better operating model</span>
               </div>
@@ -67,7 +67,7 @@ export const WhyUsPage: React.FC<WhyUsPageProps> = ({ onNavigate }) => {
                 Good work should feel <span className="text-[#D97852]">clearer</span> from day one.
               </h1>
               <p className="mt-7 max-w-2xl text-base leading-relaxed text-[#C5BFB8] sm:text-lg">
-                Hutua is built for teams that want senior thinking, practical execution, and a partner who treats time, budget, and ownership as seriously as the final craft.
+                Hatua is built for teams that want senior thinking, practical execution, and a partner who treats time, budget, and ownership as seriously as the final craft.
               </p>
               <div className="mt-9 flex flex-wrap items-center gap-3">
                 <button onClick={() => onNavigate('contact')} className="inline-flex items-center gap-2 rounded-xl bg-[#BF603C] px-5 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#A6502E]">
@@ -79,7 +79,7 @@ export const WhyUsPage: React.FC<WhyUsPageProps> = ({ onNavigate }) => {
               </div>
             </div>
             <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 sm:p-7">
-              <div className="flex items-center justify-between border-b border-white/10 pb-5"><span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#D97852]">The Hutua operating agreement</span><span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#A8A39D]"><span className="h-2 w-2 rounded-full bg-emerald-400" /> Active</span></div>
+              <div className="flex items-center justify-between border-b border-white/10 pb-5"><span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#D97852]">The Hatua operating agreement</span><span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#A8A39D]"><span className="h-2 w-2 rounded-full bg-emerald-400" /> Active</span></div>
               <h2 className="mt-6 text-2xl font-bold tracking-tight text-white">A better partner is a better process.</h2>
               <ul className="mt-6 space-y-4 text-sm text-[#C5BFB8]">
                 {['You always know what happens next.', 'The people doing the work stay close to the decision.', 'The final system belongs to your team.'].map((promise) => <li key={promise} className="flex items-start gap-3"><span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#BF603C]/20 text-[#D97852]"><Check className="h-3 w-3" /></span><span>{promise}</span></li>)}
@@ -187,7 +187,7 @@ export const WhyUsPage: React.FC<WhyUsPageProps> = ({ onNavigate }) => {
           </div>
           <div className="overflow-hidden rounded-3xl border border-[#E5DFC8] bg-white dark:border-[#444444] dark:bg-[#323232]">
             <div className="grid grid-cols-[1fr_1.2fr_1.2fr] border-b border-[#E5DFC8] bg-[#272727] text-[10px] font-bold uppercase tracking-[0.16em] text-[#A8A39D] dark:border-[#444444]">
-              <div className="p-4 sm:p-5">What matters</div><div className="p-4 text-[#D97852] sm:p-5">Hutua</div><div className="p-4 sm:p-5">The usual alternative</div>
+              <div className="p-4 sm:p-5">What matters</div><div className="p-4 text-[#D97852] sm:p-5">Hatua</div><div className="p-4 sm:p-5">The usual alternative</div>
             </div>
             {comparisonRows.map(([factor, hutua, traditional]) => (
               <div key={factor} className="grid grid-cols-[1fr_1.2fr_1.2fr] border-b border-[#E5DFC8]/70 last:border-b-0 dark:border-[#444444]">

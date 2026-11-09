@@ -45,11 +45,11 @@ export const Footer: React.FC<FooterProps> = ({
             <button
               onClick={() => handleNavClick('home')}
               className="flex items-center text-left cursor-pointer mb-4"
-              aria-label="Hutua Studios home"
+              aria-label="Hatua Studios home"
             >
               <img
                 src="/assets/brand/hatua-logo-horizontal-reversed-2000.png"
-                alt="Hutua Studios"
+                alt="Hatua Studios"
                 className="h-10 w-[148px] object-contain object-left"
               />
             </button>
@@ -152,7 +152,7 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Bottom Bar: Copyright & Unboxed Legal Notes */}
         <div className="pt-8 border-t border-[#383838] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8C857D]">
           <div className="flex items-center gap-2">
-            <span>&copy; {currentYear} Hutua Studios Ltd. All rights reserved.</span>
+            <span>&copy; {currentYear} Hatua Studios Ltd. All rights reserved.</span>
           </div>
           <div className="flex items-center gap-4 text-[#A8A39D]">
             <span>Privacy Policy</span>

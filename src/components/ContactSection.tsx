@@ -114,7 +114,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               {/* Direct channels */}
               <div className="space-y-4 pt-4 border-t border-[#E5DFC8] dark:border-[#383838]">
                 <a
-                  href="https://wa.me/15550194821?text=Hello%20Hutua%20Studios,%20I'd%20like%20to%20discuss%20a%20new%20project"
+                  href="https://wa.me/15550194821?text=Hello%20Hatua%20Studios,%20I'd%20like%20to%20discuss%20a%20new%20project"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-4 rounded-xl bg-[#FAF8F5] dark:bg-[#272727] border border-[#E5DFC8] dark:border-[#444444] hover:border-[#BF603C]/50 flex items-center justify-between group transition-colors"
@@ -136,7 +136,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </a>
 
                 <a
-                  href="mailto:hello@hutuastudios.com?subject=Project%20Inquiry%20-%20Hutua%20Studios"
+                  href="mailto:hello@hutuastudios.com?subject=Project%20Inquiry%20-%20Hatua%20Studios"
                   className="p-4 rounded-xl bg-[#FAF8F5] dark:bg-[#272727] border border-[#E5DFC8] dark:border-[#444444] hover:border-[#BF603C]/50 flex items-center justify-between group transition-colors"
                 >
                   <div className="flex items-center gap-3">
@@ -182,7 +182,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     Reference ID: {referenceId}
                   </p>
                   <p className="text-sm text-[#6B655F] dark:text-[#C5BFB8] max-w-md mx-auto leading-relaxed mb-6">
-                    Thank you, <strong className="text-[#272727] dark:text-[#FAF8F5]">{formData.name}</strong>. A senior solutions architect from Hutua Studios is reviewing your project details for <strong className="text-[#BF603C] dark:text-[#D97852]">{formData.service}</strong> and will email you at <strong className="text-[#272727] dark:text-[#FAF8F5]">{formData.email}</strong> within 2 hours.
+                    Thank you, <strong className="text-[#272727] dark:text-[#FAF8F5]">{formData.name}</strong>. A senior solutions architect from Hatua Studios is reviewing your project details for <strong className="text-[#BF603C] dark:text-[#D97852]">{formData.service}</strong> and will email you at <strong className="text-[#272727] dark:text-[#FAF8F5]">{formData.email}</strong> within 2 hours.
                   </p>
 
                   <div className="p-4 rounded-xl bg-[#FAF8F5]/80 dark:bg-[#272727]/80 border border-[#E5DFC8] dark:border-[#444444] max-w-sm mx-auto text-left text-xs space-y-1.5 mb-6 text-[#6B655F] dark:text-[#C5BFB8]">

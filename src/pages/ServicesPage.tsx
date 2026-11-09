@@ -49,7 +49,7 @@ interface ServicesPageProps {
 }
 
 const categoryMeta: { label: string; value: ServiceCategory; description: string }[] = [
-  { label: 'All services', value: 'all', description: 'The complete Hutua catalog' },
+  { label: 'All services', value: 'all', description: 'The complete Hatua catalog' },
   { label: 'Branding & creative', value: 'branding', description: 'Identity, content, and visual production' },
   { label: 'Web & commerce', value: 'web', description: 'Websites, stores, and marketplaces' },
   { label: 'Marketing & social', value: 'marketing-it', description: 'Growth, content, and community' },
@@ -148,7 +148,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               Choose the right starting point for your next chapter.
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#5C5854] dark:text-[#C5BFB8] sm:text-lg">
-              From a conversion-ready website to a full brand activation, Hutua brings strategy, creative, technology, and delivery into one accountable partner.
+              From a conversion-ready website to a full brand activation, Hatua brings strategy, creative, technology, and delivery into one accountable partner.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <button

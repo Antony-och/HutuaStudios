@@ -55,11 +55,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={() => handleNavClick('home')}
             className="flex items-center rounded-lg bg-[#272727] dark:bg-[#1E1E1E] px-2 py-1.5 text-left whitespace-nowrap shrink-0 group cursor-pointer"
-            aria-label="Hutua Studios home"
+            aria-label="Hatua Studios home"
           >
             <img
               src="/assets/brand/hatua-logo-horizontal-reversed-2000.png"
-              alt="Hutua Studios"
+              alt="Hatua Studios"
               className="h-8 w-[122px] object-contain object-left transition-transform duration-200 group-hover:scale-[1.02]"
             />
           </button>

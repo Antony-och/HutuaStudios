@@ -783,7 +783,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: 'marcus-vance',
-    quote: 'Hutua Studios completely redefined how our brand presents itself online. The new e-commerce storefront is blazing fast, and our checkout drop-off rate fell by half in the very first month.',
+    quote: 'Hatua Studios completely redefined how our brand presents itself online. The new e-commerce storefront is blazing fast, and our checkout drop-off rate fell by half in the very first month.',
     author: 'Marcus Vance',
     role: 'Founder & Creative Director',
     company: 'Noir Atelier',
@@ -792,7 +792,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: 'elena-rostova',
-    quote: 'Most agencies over-promise and disappear for weeks. Hutua Studios worked with disciplined weekly milestones. The software application they built transformed our entire regional management workflow.',
+    quote: 'Most agencies over-promise and disappear for weeks. Hatua Studios worked with disciplined weekly milestones. The software application they built transformed our entire regional management workflow.',
     author: 'Elena Rostova',
     role: 'VP of Product Operations',
     company: 'Synergy Tech Systems',
@@ -810,7 +810,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: 'sarah-jenkins',
-    quote: 'As a startup founder, speed and budget certainty were everything. Hutua Studios delivered our responsive marketing site in 4 business days. The attention to typography and mobile details is top tier.',
+    quote: 'As a startup founder, speed and budget certainty were everything. Hatua Studios delivered our responsive marketing site in 4 business days. The attention to typography and mobile details is top tier.',
     author: 'Sarah Jenkins',
     role: 'Co-Founder',
     company: 'Kinetix Health',
