@@ -14,6 +14,7 @@ import {
   ArrowRight,
   ChevronDown,
   HelpCircle,
+  Search,
 } from 'lucide-react';
 
 interface ContactPageProps {
@@ -62,6 +63,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [referenceId, setReferenceId] = useState('');
   const [openFaqId, setOpenFaqId] = useState<string | null>(FAQ_ITEMS[0]?.id ?? null);
+  const [faqSearch, setFaqSearch] = useState('');
+  const [faqCategory, setFaqCategory] = useState<'all' | 'process' | 'pricing' | 'technical' | 'general'>('all');
+
+  const filteredFaqs = FAQ_ITEMS.filter((item) => {
+    const matchesCategory = faqCategory === 'all' || item.category === faqCategory;
+    const query = faqSearch.toLowerCase();
+    return matchesCategory && (item.question.toLowerCase().includes(query) || item.answer.toLowerCase().includes(query));
+  });
 
   const validate = () => {
     const errs: Record<string, string> = {};
@@ -399,17 +408,21 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             </div>
           </div>
         </div>
-        <section className="mt-20 border-t border-[#D9D0C2] pt-16 dark:border-[#404040]">
+        <section id="faq-section" className="mt-20 border-t border-[#D9D0C2] pt-16 dark:border-[#404040]">
           <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#BF603C]"><HelpCircle className="h-4 w-4" /><span>Before you reach out</span></div>
-              <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.03em] text-[#272727] dark:text-[#FAF8F5] sm:text-4xl">A few useful answers before we talk.</h2>
-              <p className="mt-3 text-sm leading-relaxed text-[#6B655F] dark:text-[#C5BFB8]">Start with the essentials. For anything specific to your business, send us the brief above and we’ll answer directly.</p>
+              <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.03em] text-[#272727] dark:text-[#FAF8F5] sm:text-4xl">Everything useful before we start.</h2>
+              <p className="mt-3 text-sm leading-relaxed text-[#6B655F] dark:text-[#C5BFB8]">Search transparent answers about delivery, pricing, technology, ownership, and what happens after launch.</p>
             </div>
-            <button onClick={() => onNavigate('faq')} className="inline-flex shrink-0 items-center gap-2 text-xs font-bold text-[#BF603C] hover:text-[#A6502E]">View all FAQs <ArrowRight className="h-4 w-4" /></button>
+            <span className="inline-flex shrink-0 items-center gap-2 text-xs font-bold text-[#8C857D]"><span className="h-2 w-2 rounded-full bg-[#BF603C]" /> {FAQ_ITEMS.length} clear answers</span>
+          </div>
+          <div className="mb-6 space-y-3">
+            <div className="relative"><Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8C857D]" /><input type="search" value={faqSearch} onChange={(event) => setFaqSearch(event.target.value)} placeholder="Search turnaround, pricing, technology, warranty..." className="w-full rounded-xl border border-[#E5DFC8] bg-white py-3 pl-10 pr-4 text-xs text-[#272727] placeholder-[#8C857D] focus:border-[#BF603C] focus:outline-none dark:border-[#444444] dark:bg-[#323232] dark:text-[#FAF8F5]" /></div>
+            <div className="flex flex-wrap gap-2">{[{ label: 'All questions', value: 'all' }, { label: 'Process & sprints', value: 'process' }, { label: 'Pricing & contracts', value: 'pricing' }, { label: 'Technical & stacks', value: 'technical' }, { label: 'IP & ownership', value: 'general' }].map((category) => <button key={category.value} onClick={() => setFaqCategory(category.value as typeof faqCategory)} className={`rounded-lg px-3 py-1.5 text-[10px] font-bold transition-all ${faqCategory === category.value ? 'bg-[#BF603C] text-white' : 'border border-[#E5DFC8] bg-white text-[#6B655F] hover:border-[#BF603C] dark:border-[#444444] dark:bg-[#323232] dark:text-[#A8A39D]'}`}>{category.label}</button>)}</div>
           </div>
           <div className="grid gap-3 lg:grid-cols-2">
-            {FAQ_ITEMS.slice(0, 4).map((item) => {
+            {filteredFaqs.length === 0 ? <div className="rounded-2xl border border-[#E5DFC8] bg-white p-8 text-center text-xs text-[#8C857D] dark:border-[#444444] dark:bg-[#323232] lg:col-span-2">No questions matched that search. Send us the brief above and we’ll answer directly.</div> : filteredFaqs.map((item) => {
               const isOpen = openFaqId === item.id;
               return (
                 <div key={item.id} className={`overflow-hidden rounded-2xl border transition-all ${isOpen ? 'border-[#BF603C] bg-[#FAF8F5] shadow-sm dark:bg-[#323232]' : 'border-[#E5DFC8] bg-white/60 dark:border-[#444444] dark:bg-[#323232]/60'}`}>

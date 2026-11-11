@@ -14,7 +14,6 @@ import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
 import { WhyUsPage } from './pages/WhyUsPage';
 import { WorkPage } from './pages/WorkPage';
-import { FaqPage } from './pages/FaqPage';
 import { ContactPage } from './pages/ContactPage';
 
 export default function App() {
@@ -31,7 +30,7 @@ export default function App() {
     if (path === 'services') return 'services';
     if (path === 'why-us' || path === 'about' || path === 'process') return 'why-us';
     if (path === 'work' || path === 'portfolio') return 'work';
-    if (path === 'faq') return 'faq';
+    if (path === 'faq') return 'contact';
     if (path === 'contact') return 'contact';
     return 'home';
   };
@@ -46,7 +45,7 @@ export default function App() {
 
   // Synchronize browser history and document title
   const navigateTo = (page: PageType) => {
-    const resolvedPage: PageType = page === 'process' ? 'why-us' : page;
+    const resolvedPage: PageType = page === 'process' ? 'why-us' : page === 'faq' ? 'contact' : page;
     setCurrentPage(resolvedPage);
     const pageTitles: Record<PageType, string> = {
       home: 'Hatua Studios | Modern Digital Agency & Software Solutions',
@@ -142,10 +141,6 @@ export default function App() {
 
         {currentPage === 'work' && (
           <WorkPage onNavigate={navigateTo} />
-        )}
-
-        {currentPage === 'faq' && (
-          <FaqPage onNavigate={navigateTo} />
         )}
 
         {currentPage === 'contact' && (

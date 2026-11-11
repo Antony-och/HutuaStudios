@@ -116,7 +116,6 @@ export const Footer: React.FC<FooterProps> = ({
                 { label: 'Services (48)', page: 'services' as PageType },
                 { label: 'Why Us + Process', page: 'why-us' as PageType },
                 { label: 'Case Studies', page: 'work' as PageType },
-                { label: 'FAQ', page: 'faq' as PageType },
                 { label: 'Contact', page: 'contact' as PageType },
               ].map((item) => (
                 <li key={item.page}>
