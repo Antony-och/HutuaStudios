@@ -27,6 +27,7 @@ export interface CaseStudy {
   metric: string;
   metricLabel: string;
   image: string;
+  liveUrl?: string;
   tags: string[];
   challenge: string;
   solution: string;
