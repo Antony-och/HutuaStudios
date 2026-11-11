@@ -761,6 +761,27 @@ export const CASE_STUDIES: CaseStudy[] = [
     ]
   },
   {
+    id: 'mashirika-motors',
+    title: 'Mashirika Motors Inventory Marketplace',
+    client: 'Mashirika Motors',
+    serviceCategory: 'Website & E-Commerce',
+    serviceName: 'Website & E-Commerce',
+    year: '2026',
+    summary: 'A focused Kenyan vehicle marketplace helping buyers compare inventory clearly and connect with sellers when they find the right car.',
+    metric: '4',
+    metricLabel: 'Hand-picked deals surfaced',
+    image: '/assets/portfolio/mashirika-motors-homepage.png',
+    liveUrl: 'https://mashirikamotors.netlify.app/',
+    tags: ['Vehicle Marketplace', 'Kenya Inventory', 'Search & Filters', 'Seller Leads'],
+    challenge: 'Car shoppers needed a simpler way to browse vehicles across Kenya, compare make, condition, location, mileage, and budget, then contact the seller directly.',
+    solution: 'Designed an inventory-led marketplace with fast search, make and condition filters, location and budget discovery, vehicle detail pages, seller submissions, and a lightweight admin path.',
+    results: [
+      'Searchable vehicle inventory organized by make, condition, location, price, and year',
+      'Clear buyer journeys from discovery to vehicle details and direct seller contact',
+      'Dedicated sell-your-car flow alongside the public marketplace experience'
+    ]
+  },
+  {
     id: 'noir-atelier',
     title: 'Noir Atelier Luxury Retail',
     client: 'Noir Atelier Ltd.',
