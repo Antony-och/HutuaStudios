@@ -729,6 +729,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     metric: '1,200+',
     metricLabel: 'Verified listings surfaced',
     image: '/assets/portfolio/my-makazi-homepage.png',
+    liveUrl: 'https://my-makazi.base44.app/',
     tags: ['Property Marketplace', 'Kenya Rentals', 'Search & Discovery', 'Owner Workflows'],
     challenge: 'Renters needed a more focused way to search verified homes by location, property type, rent, and bedrooms, while owners needed a direct path to list their properties.',
     solution: 'Designed and built a polished marketplace experience with location-led discovery, category browsing, featured properties, owner onboarding, tenant accounts, and clear enquiry paths.',
@@ -749,6 +750,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     metric: '10',
     metricLabel: 'Counties served',
     image: '/assets/portfolio/kechas-agencies-homepage.png',
+    liveUrl: 'https://kechas.base44.app/',
     tags: ['Car Hire', 'Kisumu', 'Travel & Tourism', 'WhatsApp Booking'],
     challenge: 'Kechas needed a digital front door that could communicate local route knowledge, build trust quickly, and make reservations feel as straightforward as the service itself.',
     solution: 'Created an editorial travel experience with fleet discovery, chauffeur and self-drive services, airport transfer journeys, destination storytelling, and direct booking paths through phone and WhatsApp.',
@@ -756,6 +758,27 @@ export const CASE_STUDIES: CaseStudy[] = [
       'Clear booking journeys for chauffeur-driven, self-drive, and airport-transfer services',
       'A premium brand experience rooted in Kisumu and Western Kenya expertise',
       'Fleet, destinations, pricing reassurance, and contact channels organized in one responsive site'
+    ]
+  },
+  {
+    id: 'mashirika-motors',
+    title: 'Mashirika Motors Inventory Marketplace',
+    client: 'Mashirika Motors',
+    serviceCategory: 'Website & E-Commerce',
+    serviceName: 'Website & E-Commerce',
+    year: '2026',
+    summary: 'A focused Kenyan vehicle marketplace helping buyers compare inventory clearly and connect with sellers when they find the right car.',
+    metric: '4',
+    metricLabel: 'Hand-picked deals surfaced',
+    image: '/assets/portfolio/mashirika-motors-homepage.png',
+    liveUrl: 'https://mashirikamotors.netlify.app/',
+    tags: ['Vehicle Marketplace', 'Kenya Inventory', 'Search & Filters', 'Seller Leads'],
+    challenge: 'Car shoppers needed a simpler way to browse vehicles across Kenya, compare make, condition, location, mileage, and budget, then contact the seller directly.',
+    solution: 'Designed an inventory-led marketplace with fast search, make and condition filters, location and budget discovery, vehicle detail pages, seller submissions, and a lightweight admin path.',
+    results: [
+      'Searchable vehicle inventory organized by make, condition, location, price, and year',
+      'Clear buyer journeys from discovery to vehicle details and direct seller contact',
+      'Dedicated sell-your-car flow alongside the public marketplace experience'
     ]
   },
   {
