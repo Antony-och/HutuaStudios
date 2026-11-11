@@ -739,6 +739,26 @@ export const CASE_STUDIES: CaseStudy[] = [
     ]
   },
   {
+    id: 'kechas-agencies',
+    title: 'Kechas Agencies Western Kenya',
+    client: 'Kechas Agencies',
+    serviceCategory: 'Website & E-Commerce',
+    serviceName: 'Website & E-Commerce',
+    year: '2026',
+    summary: 'A premium car-hire and regional travel experience helping visitors, professionals, and explorers move confidently across Western Kenya.',
+    metric: '10',
+    metricLabel: 'Counties served',
+    image: '/assets/portfolio/kechas-agencies-homepage.png',
+    tags: ['Car Hire', 'Kisumu', 'Travel & Tourism', 'WhatsApp Booking'],
+    challenge: 'Kechas needed a digital front door that could communicate local route knowledge, build trust quickly, and make reservations feel as straightforward as the service itself.',
+    solution: 'Created an editorial travel experience with fleet discovery, chauffeur and self-drive services, airport transfer journeys, destination storytelling, and direct booking paths through phone and WhatsApp.',
+    results: [
+      'Clear booking journeys for chauffeur-driven, self-drive, and airport-transfer services',
+      'A premium brand experience rooted in Kisumu and Western Kenya expertise',
+      'Fleet, destinations, pricing reassurance, and contact channels organized in one responsive site'
+    ]
+  },
+  {
     id: 'noir-atelier',
     title: 'Noir Atelier Luxury Retail',
     client: 'Noir Atelier Ltd.',
