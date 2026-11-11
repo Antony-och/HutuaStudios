@@ -728,7 +728,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     summary: 'A clear, trusted rental marketplace helping people find homes across Kenya while giving property owners a simpler way to list and manage them.',
     metric: '1,200+',
     metricLabel: 'Verified listings surfaced',
-    image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2000&q=80',
+    image: '/assets/portfolio/my-makazi-homepage.png',
     tags: ['Property Marketplace', 'Kenya Rentals', 'Search & Discovery', 'Owner Workflows'],
     challenge: 'Renters needed a more focused way to search verified homes by location, property type, rent, and bedrooms, while owners needed a direct path to list their properties.',
     solution: 'Designed and built a polished marketplace experience with location-led discovery, category browsing, featured properties, owner onboarding, tenant accounts, and clear enquiry paths.',
@@ -736,6 +736,26 @@ export const CASE_STUDIES: CaseStudy[] = [
       '1,200+ verified listings presented in one searchable rental marketplace',
       'Coverage across 8 counties with focused Nairobi neighbourhood discovery',
       'Connected renter, owner, manager, and tenant journeys in one product experience'
+    ]
+  },
+  {
+    id: 'kechas-agencies',
+    title: 'Kechas Agencies Western Kenya',
+    client: 'Kechas Agencies',
+    serviceCategory: 'Website & E-Commerce',
+    serviceName: 'Website & E-Commerce',
+    year: '2026',
+    summary: 'A premium car-hire and regional travel experience helping visitors, professionals, and explorers move confidently across Western Kenya.',
+    metric: '10',
+    metricLabel: 'Counties served',
+    image: '/assets/portfolio/kechas-agencies-homepage.png',
+    tags: ['Car Hire', 'Kisumu', 'Travel & Tourism', 'WhatsApp Booking'],
+    challenge: 'Kechas needed a digital front door that could communicate local route knowledge, build trust quickly, and make reservations feel as straightforward as the service itself.',
+    solution: 'Created an editorial travel experience with fleet discovery, chauffeur and self-drive services, airport transfer journeys, destination storytelling, and direct booking paths through phone and WhatsApp.',
+    results: [
+      'Clear booking journeys for chauffeur-driven, self-drive, and airport-transfer services',
+      'A premium brand experience rooted in Kisumu and Western Kenya expertise',
+      'Fleet, destinations, pricing reassurance, and contact channels organized in one responsive site'
     ]
   },
   {

@@ -14,6 +14,7 @@ import {
   ArrowRight,
   ChevronDown,
   HelpCircle,
+  Search,
 } from 'lucide-react';
 
 interface ContactPageProps {
@@ -62,6 +63,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [referenceId, setReferenceId] = useState('');
   const [openFaqId, setOpenFaqId] = useState<string | null>(FAQ_ITEMS[0]?.id ?? null);
+  const [faqSearch, setFaqSearch] = useState('');
+  const [faqCategory, setFaqCategory] = useState<'all' | 'process' | 'pricing' | 'technical' | 'general'>('all');
+
+  const filteredFaqs = FAQ_ITEMS.filter((item) => {
+    const matchesCategory = faqCategory === 'all' || item.category === faqCategory;
+    const query = faqSearch.toLowerCase();
+    return matchesCategory && (item.question.toLowerCase().includes(query) || item.answer.toLowerCase().includes(query));
+  });
 
   const validate = () => {
     const errs: Record<string, string> = {};
@@ -97,10 +106,16 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   return (
     <div className="min-h-screen overflow-hidden bg-[#F2EDE4] pb-20 pt-28 text-[#272727] dark:bg-[#1E1E1E] dark:text-[#FAF8F5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-12 max-w-3xl">
-          <div className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#BF603C]"><span>Talk to us</span><span className="text-[#BF603C]/40">/</span><span>Start with the real brief</span></div>
-          <h1 className="max-w-3xl text-5xl font-extrabold leading-[0.98] tracking-[-0.05em] text-[#272727] dark:text-[#FAF8F5] sm:text-7xl">Let’s talk about what’s next.</h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#5C5854] dark:text-[#C5BFB8] sm:text-lg">Tell us where the friction is, what you are trying to build, or what needs to move faster. We’ll help you find the most useful next step.</p>
+        <div className="mb-12 grid gap-8 lg:grid-cols-[1fr_0.62fr] lg:items-end">
+          <div>
+            <div className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#BF603C]"><span>Talk to us</span><span className="text-[#BF603C]/40">/</span><span>Start with the real brief</span></div>
+            <h1 className="max-w-4xl text-5xl font-extrabold leading-[0.94] tracking-[-0.06em] text-[#272727] dark:text-[#FAF8F5] sm:text-7xl">Bring the messy brief. Leave with a clearer next move.</h1>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#5C5854] dark:text-[#C5BFB8] sm:text-lg">Tell us what is stuck, what you are trying to build, or what needs to perform better. We’ll turn the first conversation into a practical direction.</p>
+          </div>
+          <div className="rounded-3xl border border-[#D9D0C2] bg-[#FAF8F5] p-5 dark:border-[#444444] dark:bg-[#323232]">
+            <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.18em] text-[#BF603C]"><span>What happens next</span><span className="flex items-center gap-1.5 text-[#6B655F] dark:text-[#A8A39D]"><span className="h-2 w-2 rounded-full bg-emerald-500" /> Open</span></div>
+            <div className="mt-5 space-y-4">{[['01', 'You send the useful context', 'A few honest details are enough.'], ['02', 'We reply with a direction', 'Expect a practical response within 2 hours.'], ['03', 'You choose the next step', 'No pressure, pitch deck, or forced commitment.']].map(([number, title, text]) => <div key={number} className="flex gap-3"><span className="text-[10px] font-bold text-[#BF603C]">{number}</span><div><span className="block text-xs font-bold text-[#272727] dark:text-[#FAF8F5]">{title}</span><span className="mt-0.5 block text-[11px] leading-relaxed text-[#8C857D]">{text}</span></div></div>)}</div>
+          </div>
         </div>
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
           {/* Left Column: Direct channels and reassurance */}
@@ -229,7 +244,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="mb-6 rounded-2xl bg-[#272727] p-5 text-[#FAF8F5] dark:bg-[#1E1E1E]">
-                    <div className="flex items-center justify-between gap-4"><div><span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#D97852]">01 / Your message</span><h2 className="mt-2 text-xl font-bold text-white">Talk to Us &amp; Scope Review</h2></div><ShieldCheck className="h-5 w-5 shrink-0 text-[#D97852]" /></div><p className="mt-3 text-xs leading-relaxed text-[#C5BFB8]">No pressure, no generic pitch. Just enough context for a useful first response.</p>
+                    <div className="flex items-center justify-between gap-4"><div><span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#D97852]">01 / Shape the conversation</span><h2 className="mt-2 text-xl font-bold text-white">Give us the useful version of the brief.</h2></div><ShieldCheck className="h-5 w-5 shrink-0 text-[#D97852]" /></div><p className="mt-3 text-xs leading-relaxed text-[#C5BFB8]">A few real details help us respond with a sharper recommendation—not a generic sales pitch.</p>
                   </div>
 
                   {/* Name and Email */}
@@ -393,17 +408,21 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             </div>
           </div>
         </div>
-        <section className="mt-20 border-t border-[#D9D0C2] pt-16 dark:border-[#404040]">
+        <section id="faq-section" className="mt-20 border-t border-[#D9D0C2] pt-16 dark:border-[#404040]">
           <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#BF603C]"><HelpCircle className="h-4 w-4" /><span>Before you reach out</span></div>
-              <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.03em] text-[#272727] dark:text-[#FAF8F5] sm:text-4xl">A few useful answers before we talk.</h2>
-              <p className="mt-3 text-sm leading-relaxed text-[#6B655F] dark:text-[#C5BFB8]">Start with the essentials. For anything specific to your business, send us the brief above and we’ll answer directly.</p>
+              <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.03em] text-[#272727] dark:text-[#FAF8F5] sm:text-4xl">Everything useful before we start.</h2>
+              <p className="mt-3 text-sm leading-relaxed text-[#6B655F] dark:text-[#C5BFB8]">Search transparent answers about delivery, pricing, technology, ownership, and what happens after launch.</p>
             </div>
-            <button onClick={() => onNavigate('faq')} className="inline-flex shrink-0 items-center gap-2 text-xs font-bold text-[#BF603C] hover:text-[#A6502E]">View all FAQs <ArrowRight className="h-4 w-4" /></button>
+            <span className="inline-flex shrink-0 items-center gap-2 text-xs font-bold text-[#8C857D]"><span className="h-2 w-2 rounded-full bg-[#BF603C]" /> {FAQ_ITEMS.length} clear answers</span>
+          </div>
+          <div className="mb-6 space-y-3">
+            <div className="relative"><Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8C857D]" /><input type="search" value={faqSearch} onChange={(event) => setFaqSearch(event.target.value)} placeholder="Search turnaround, pricing, technology, warranty..." className="w-full rounded-xl border border-[#E5DFC8] bg-white py-3 pl-10 pr-4 text-xs text-[#272727] placeholder-[#8C857D] focus:border-[#BF603C] focus:outline-none dark:border-[#444444] dark:bg-[#323232] dark:text-[#FAF8F5]" /></div>
+            <div className="flex flex-wrap gap-2">{[{ label: 'All questions', value: 'all' }, { label: 'Process & sprints', value: 'process' }, { label: 'Pricing & contracts', value: 'pricing' }, { label: 'Technical & stacks', value: 'technical' }, { label: 'IP & ownership', value: 'general' }].map((category) => <button key={category.value} onClick={() => setFaqCategory(category.value as typeof faqCategory)} className={`rounded-lg px-3 py-1.5 text-[10px] font-bold transition-all ${faqCategory === category.value ? 'bg-[#BF603C] text-white' : 'border border-[#E5DFC8] bg-white text-[#6B655F] hover:border-[#BF603C] dark:border-[#444444] dark:bg-[#323232] dark:text-[#A8A39D]'}`}>{category.label}</button>)}</div>
           </div>
           <div className="grid gap-3 lg:grid-cols-2">
-            {FAQ_ITEMS.slice(0, 4).map((item) => {
+            {filteredFaqs.length === 0 ? <div className="rounded-2xl border border-[#E5DFC8] bg-white p-8 text-center text-xs text-[#8C857D] dark:border-[#444444] dark:bg-[#323232] lg:col-span-2">No questions matched that search. Send us the brief above and we’ll answer directly.</div> : filteredFaqs.map((item) => {
               const isOpen = openFaqId === item.id;
               return (
                 <div key={item.id} className={`overflow-hidden rounded-2xl border transition-all ${isOpen ? 'border-[#BF603C] bg-[#FAF8F5] shadow-sm dark:bg-[#323232]' : 'border-[#E5DFC8] bg-white/60 dark:border-[#444444] dark:bg-[#323232]/60'}`}>
