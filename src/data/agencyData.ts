@@ -719,6 +719,26 @@ export const PROCESS_STEPS: ProcessStep[] = [
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
+    id: 'my-makazi',
+    title: 'My Makazi Rental Marketplace',
+    client: 'MAKAZI',
+    serviceCategory: 'E-Commerce Website Design',
+    serviceName: 'Website & E-Commerce',
+    year: '2026',
+    summary: 'A clear, trusted rental marketplace helping people find homes across Kenya while giving property owners a simpler way to list and manage them.',
+    metric: '1,200+',
+    metricLabel: 'Verified listings surfaced',
+    image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2000&q=80',
+    tags: ['Property Marketplace', 'Kenya Rentals', 'Search & Discovery', 'Owner Workflows'],
+    challenge: 'Renters needed a more focused way to search verified homes by location, property type, rent, and bedrooms, while owners needed a direct path to list their properties.',
+    solution: 'Designed and built a polished marketplace experience with location-led discovery, category browsing, featured properties, owner onboarding, tenant accounts, and clear enquiry paths.',
+    results: [
+      '1,200+ verified listings presented in one searchable rental marketplace',
+      'Coverage across 8 counties with focused Nairobi neighbourhood discovery',
+      'Connected renter, owner, manager, and tenant journeys in one product experience'
+    ]
+  },
+  {
     id: 'noir-atelier',
     title: 'Noir Atelier Luxury Retail',
     client: 'Noir Atelier Ltd.',

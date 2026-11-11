@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageType } from '../types';
-import { ArrowUpRight, Mail, Phone, MapPin, Globe, Github, Twitter, Linkedin, MessageCircle } from 'lucide-react';
+import { ArrowUpRight, Mail, Phone, MapPin, Globe, Github, Twitter, Linkedin, Instagram, MessageCircle } from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (page: PageType) => void;
@@ -74,6 +74,15 @@ export const Footer: React.FC<FooterProps> = ({
                 aria-label="LinkedIn Profile"
               >
                 <Linkedin className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.instagram.com/hatuastudios/"
+                target="_blank"
+                rel="noreferrer"
+                className="w-8 h-8 rounded-lg bg-[#323232] border border-[#444444] hover:border-[#BF603C] text-[#C5BFB8] hover:text-white flex items-center justify-center transition-colors"
+                aria-label="Instagram Profile"
+              >
+                <Instagram className="w-4 h-4" />
               </a>
               <a
                 href="https://github.com"
