@@ -97,10 +97,16 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   return (
     <div className="min-h-screen overflow-hidden bg-[#F2EDE4] pb-20 pt-28 text-[#272727] dark:bg-[#1E1E1E] dark:text-[#FAF8F5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-12 max-w-3xl">
-          <div className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#BF603C]"><span>Talk to us</span><span className="text-[#BF603C]/40">/</span><span>Start with the real brief</span></div>
-          <h1 className="max-w-3xl text-5xl font-extrabold leading-[0.98] tracking-[-0.05em] text-[#272727] dark:text-[#FAF8F5] sm:text-7xl">Let’s talk about what’s next.</h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#5C5854] dark:text-[#C5BFB8] sm:text-lg">Tell us where the friction is, what you are trying to build, or what needs to move faster. We’ll help you find the most useful next step.</p>
+        <div className="mb-12 grid gap-8 lg:grid-cols-[1fr_0.62fr] lg:items-end">
+          <div>
+            <div className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#BF603C]"><span>Talk to us</span><span className="text-[#BF603C]/40">/</span><span>Start with the real brief</span></div>
+            <h1 className="max-w-4xl text-5xl font-extrabold leading-[0.94] tracking-[-0.06em] text-[#272727] dark:text-[#FAF8F5] sm:text-7xl">Bring the messy brief. Leave with a clearer next move.</h1>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#5C5854] dark:text-[#C5BFB8] sm:text-lg">Tell us what is stuck, what you are trying to build, or what needs to perform better. We’ll turn the first conversation into a practical direction.</p>
+          </div>
+          <div className="rounded-3xl border border-[#D9D0C2] bg-[#FAF8F5] p-5 dark:border-[#444444] dark:bg-[#323232]">
+            <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.18em] text-[#BF603C]"><span>What happens next</span><span className="flex items-center gap-1.5 text-[#6B655F] dark:text-[#A8A39D]"><span className="h-2 w-2 rounded-full bg-emerald-500" /> Open</span></div>
+            <div className="mt-5 space-y-4">{[['01', 'You send the useful context', 'A few honest details are enough.'], ['02', 'We reply with a direction', 'Expect a practical response within 2 hours.'], ['03', 'You choose the next step', 'No pressure, pitch deck, or forced commitment.']].map(([number, title, text]) => <div key={number} className="flex gap-3"><span className="text-[10px] font-bold text-[#BF603C]">{number}</span><div><span className="block text-xs font-bold text-[#272727] dark:text-[#FAF8F5]">{title}</span><span className="mt-0.5 block text-[11px] leading-relaxed text-[#8C857D]">{text}</span></div></div>)}</div>
+          </div>
         </div>
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
           {/* Left Column: Direct channels and reassurance */}
@@ -229,7 +235,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="mb-6 rounded-2xl bg-[#272727] p-5 text-[#FAF8F5] dark:bg-[#1E1E1E]">
-                    <div className="flex items-center justify-between gap-4"><div><span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#D97852]">01 / Your message</span><h2 className="mt-2 text-xl font-bold text-white">Talk to Us &amp; Scope Review</h2></div><ShieldCheck className="h-5 w-5 shrink-0 text-[#D97852]" /></div><p className="mt-3 text-xs leading-relaxed text-[#C5BFB8]">No pressure, no generic pitch. Just enough context for a useful first response.</p>
+                    <div className="flex items-center justify-between gap-4"><div><span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#D97852]">01 / Shape the conversation</span><h2 className="mt-2 text-xl font-bold text-white">Give us the useful version of the brief.</h2></div><ShieldCheck className="h-5 w-5 shrink-0 text-[#D97852]" /></div><p className="mt-3 text-xs leading-relaxed text-[#C5BFB8]">A few real details help us respond with a sharper recommendation—not a generic sales pitch.</p>
                   </div>
 
                   {/* Name and Email */}
