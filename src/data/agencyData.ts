@@ -728,7 +728,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     summary: 'A clear, trusted rental marketplace helping people find homes across Kenya while giving property owners a simpler way to list and manage them.',
     metric: '1,200+',
     metricLabel: 'Verified listings surfaced',
-    image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2000&q=80',
+    image: '/assets/portfolio/my-makazi-homepage.png',
     tags: ['Property Marketplace', 'Kenya Rentals', 'Search & Discovery', 'Owner Workflows'],
     challenge: 'Renters needed a more focused way to search verified homes by location, property type, rent, and bedrooms, while owners needed a direct path to list their properties.',
     solution: 'Designed and built a polished marketplace experience with location-led discovery, category browsing, featured properties, owner onboarding, tenant accounts, and clear enquiry paths.',
